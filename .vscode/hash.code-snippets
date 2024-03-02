@@ -1,0 +1,18 @@
+{
+	"Print to console": {
+		"scope": "cpp,c++",
+		"prefix": "hash",
+		"body": [
+			"",
+			"int Hash(string &s,int p,int q){",
+			"    int t=1,h=0;",
+			"    for(int i=s.size()-1;i>=0;i--){",
+			"        h=(h+(long long)s[i]*t%q)%q;",
+			"        t=(long long)t*p%q;",
+			"    }",
+			"    return h;",
+			"}",
+		],
+		"description": "hash for string."
+	}
+}

@@ -1,0 +1,18 @@
+{
+	"Print to console": {
+		"scope": "cpp,c++",
+		"prefix": "map_line",
+		"body": [
+			"",
+			"int head[$0],nextt[$0],eage[$0],ver[$0],cnt;",
+			"void add(int x,int y,int z){",
+			"    ++cnt;",
+			"    ver[cnt]=y;",
+			"    eage[cnt]=z",
+			"    nextt[cnt]=head[x];",
+			"    head[x]=cnt;",
+			"}",
+		],
+		"description": "a map."
+	}
+}

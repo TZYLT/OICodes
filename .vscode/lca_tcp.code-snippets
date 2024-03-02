@@ -1,0 +1,38 @@
+{
+	"Print to console": {
+		"scope": "cpp,c++",
+		"prefix": "lca_tcp",
+		"body": [
+			"",
+			"int _size[$0],dep[$0],hson[$0],fa[$0],top[$0];",
+			"void dfsI(int x,int ffa){",
+			"    int s=-1;",
+			"    _size[x]=1;fa[x]=ffa;",
+			"    dep[x]=dep[ffa]+1;",
+			"    for(int i=head[x];i;i=nextt[i])",
+			"        if(ver[i]!=ffa){",
+			"            dfsI(ver[i],x);",
+			"            _size[x]+=_size[ver[i]];",
+			"            if(s<_size[ver[i]])s=_size[ver[i]],hson[x]=ver[i];",
+			"        }        ",
+			"}",
+			"void dfsII(int x,int tp){",
+			"    top[x]=tp;",
+			"    if(!hson[x])return;",
+			"    dfsII(hson[x],tp);",
+			"    for(int i=head[x];i;i=nextt[i])",
+			"        if(ver[i]!=fa[x]&&ver[i]!=hson[x])",
+			"            dfsII(ver[i],ver[i]);",
+			"}",
+			"int lca(int x,int y){",
+			"    while(top[x]!=top[y]){",
+			"        if(dep[top[x]]<dep[top[y]])",
+			"            swap(x,y);",
+			"        x=fa[top[x]];",
+			"    }",
+			"    return dep[x]<dep[y]?x:y;",
+			"}",
+		],
+		"description": "you need a map."
+	}
+}

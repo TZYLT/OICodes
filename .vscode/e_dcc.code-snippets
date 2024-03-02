@@ -1,0 +1,35 @@
+{
+	"Print to console": {
+		"scope": "cpp,c++",
+		"prefix": "edcc",
+		"body": [
+			"",
+			"",
+			"int dfn[M],low[M],bridge[M],v[M],c,s;",
+			"void dfsI(int x,int ine){",
+			"    s++;",
+			"    low[x]=dfn[x]=s;",
+			"    for(int i=head[x];i;i=nextt[i]){",
+			"        if(i!=ine){",
+			"            if(!dfn[ver[i]]){",
+			"                dfsI(ver[i],i^1);",
+			"                low[x]=min(low[x],low[ver[i]]);",
+			"                if(low[ver[i]]>dfn[x]) ",
+			"                    bridge[i]=bridge[i^1]=1;",
+			"            }",
+			"            else low[x]=min(low[x],dfn[ver[i]]);",
+			"        }",
+			"    }",
+			"    ",
+			"}",
+			"vector<int> ans[600020];",
+			"void dfs(int x){",
+			"    v[x]=1;",
+			"    ans[c].push_back(x);",
+			"    for(int i=head[x];i;i=nextt[i])",
+			"        if(!v[ver[i]]&&!bridge[i])dfs(ver[i]);",
+			"}",
+		],
+		"description": "you need a map.c is edcc id."
+	}
+}

@@ -1,0 +1,12 @@
+{
+	"Print to console": {
+		"scope": "cpp,c++",
+		"prefix": "inv_liner",
+		"body": [
+			"",
+			"for(int i=2;i<=n;++i)",
+			"    inv[i]=(long long)(p-p/i)*inv[p%i]%p;",
+		],
+		"description": ""
+	}
+}

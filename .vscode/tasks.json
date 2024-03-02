@@ -1,7 +1,7 @@
 {
   "options": {
     "env": {
-      "Path": "D:\\mingw64\\bin;${env:Path}"
+      "Path": "C:\\Program Files (x86)\\Dev-Cpp\\MinGW32\\bin;${env:Path}"
     }
   },
   "tasks": [
@@ -11,11 +11,12 @@
         "${file}",
         "-o",
         "${fileDirname}\\${fileBasenameNoExtension}.exe",
-        "-Wall",
         "-O2",
-        "-std=c++23"
+        "-static-libgcc",
+        "-static-libstdc++",
+        "-std=c++17"
       ],
-      "command": "D:\\mingw64\\bin\\g++.exe",
+      "command": "C:\\Program Files (x86)\\Dev-Cpp\\MinGW32\\bin\\g++.exe",
       "group": {
         "isDefault": true,
         "kind": "build"
@@ -40,7 +41,7 @@
       "options": {
         "cwd": "${fileDirname}",
         "env": {
-          "Path": "D:\\mingw64\\bin;${env:Path}"
+          "Path": "C:\\Program Files (x86)\\Dev-Cpp\\MinGW32\\bin;${env:Path}"
         }
       },
       "presentation": {
