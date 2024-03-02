@@ -63,5 +63,6 @@
     "iostream": "cpp",
     "*.tcc": "cpp",
     "istream": "cpp"
-  }
+  },
+  "cmake.configureOnOpen": true
 }

@@ -8,7 +8,7 @@
 			"void add(int x,int y,int z){",
 			"    ++cnt;",
 			"    ver[cnt]=y;",
-			"    eage[cnt]=z",
+			"    eage[cnt]=z;",
 			"    nextt[cnt]=head[x];",
 			"    head[x]=cnt;",
 			"}",

@@ -1,0 +1,10 @@
+
+-[P2158[SDOI2008]仪仗队](https://www.luogu.com.cn/problem/P2158)
+-[P1516青蛙的约会](https://www.luogu.com.cn/problem/P1516)
+-[P2421[NOI2002]荒岛野人](https://www.luogu.com.cn/problem/P2421)
+-[CF7CLine](https://www.luogu.com.cn/problem/CF7C)
+-[CF1665DGCDGuess](https://www.luogu.com.cn/problem/CF1665D)
+-[P2568GCD](https://www.luogu.com.cn/problem/P2568)
+-[P4549【模板】裴蜀定理](https://www.luogu.com.cn/problem/P4549)
+-[P2480[SDOI2010]古代猪文](https://www.luogu.com.cn/problem/P2480)
+-[P5491【模板】二次剩余](https://www.luogu.com.cn/problem/P5491)

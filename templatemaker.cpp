@@ -44,9 +44,5 @@ int main(){
 	fclose(stdout);
 	system(n.c_str());
 	clog<<"Finished!\nAgain?(0/1):";
-
-	int op;
-	cin>>op;
-	if(op) main();
 }
 
