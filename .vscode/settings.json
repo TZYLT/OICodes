@@ -62,7 +62,10 @@
   "files.associations": {
     "iostream": "cpp",
     "*.tcc": "cpp",
-    "istream": "cpp"
+    "istream": "cpp",
+    "cmath": "cpp",
+    "complex": "cpp",
+    "random": "cpp"
   },
   "cmake.configureOnOpen": true
 }
