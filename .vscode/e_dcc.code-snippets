@@ -5,7 +5,7 @@
 		"body": [
 			"",
 			"",
-			"int dfn[M],low[M],bridge[M],v[M],c,s;",
+			"int dfn[$0],low[$0],bridge[$0],v[$0],c,s;",
 			"void dfsI(int x,int ine){",
 			"    s++;",
 			"    low[x]=dfn[x]=s;",
@@ -22,7 +22,7 @@
 			"    }",
 			"    ",
 			"}",
-			"vector<int> ans[600020];",
+			"vector<int> ans[$0];",
 			"void dfs(int x){",
 			"    v[x]=1;",
 			"    ans[c].push_back(x);",

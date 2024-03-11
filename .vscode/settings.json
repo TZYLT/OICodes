@@ -65,7 +65,11 @@
     "istream": "cpp",
     "cmath": "cpp",
     "complex": "cpp",
-    "random": "cpp"
+    "random": "cpp",
+    "array": "cpp",
+    "tuple": "cpp",
+    "utility": "cpp",
+    "variant": "cpp"
   },
   "cmake.configureOnOpen": true
 }

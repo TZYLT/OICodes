@@ -4,7 +4,7 @@
 		"prefix": "dijkstra",
 		"body": [
 			"",
-			"int v[M],d[M];",
+			"int v[$0],d[$0];",
 			"priority_queue<pair<int,int> > q;",
 			"void dijkstra(){",
 			"    memset(d,0x3f,sizeof(d));",
