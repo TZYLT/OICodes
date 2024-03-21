@@ -1,0 +1,26 @@
+{
+	"Print to console": {
+		"scope": "cpp,c++",
+		"prefix": "DisjointSet",
+		"body": [
+			"",
+			"template <int C>",
+			"struct DisjointSet{",
+			"	int fa[C];",
+			"    DisjointSet<C>& init(void){",
+			"        for(int i=0;i<C;i++)",
+			"                fa[i]=i; ",
+			"            return *this;",
+			"    }",
+			"    int get(int x){",
+			"        if(x==fa[x]) return x;",
+			"        return fa[x]=get(fa[x]);",
+			"    } ",
+			"    void merge(int x,int y){",
+			"        fa[get(x)]=get(y);",
+			"    }",
+			"};",
+		],
+		"description": ""
+	}
+}

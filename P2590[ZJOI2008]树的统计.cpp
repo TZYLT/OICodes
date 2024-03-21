@@ -23,7 +23,7 @@ void dfsI(int x,int ffa){
         }        
 }
 void dfsII(int x,int tp){
-    top[x]=tp;
+    top[x]=tp;dfn[x]=++id;
     if(!hson[x])return;
     dfsII(hson[x],tp);
     for(int i=head[x];i;i=nextt[i])
@@ -42,10 +42,10 @@ template <int C>
 class SegmentTree{
 	public:
 		int l[4*C+1],r[4*C+1];
-		long long sum[4*C+1],maxx[4*C+1];
-		int data[C+1];
+		int sum[4*C+1],maxx[4*C+1];
+		int data[4*C+1];
         void init(void){
-            for(int i=1;i<=C;i++) maxx[i]=-1000000,data[i]=0,l[i]=0,r[i]=0,sum[i]=0,add[i]=0;
+            for(int i=1;i<=4*C;i++) maxx[i]=-10000000,data[i]=0,l[i]=0,r[i]=0,sum[i]=0,add[i]=0;
             //build(1,1,n);
         }
         void build(int p,int li,int ri){
@@ -90,6 +90,14 @@ class SegmentTree{
         } 
 }; 
 SegmentTree<M> tr;
+int askadd(int x){
+    int a=0;
+    while(x){
+        a+=tr.askadd(1,dfn[top[x]],dfn[x]);
+        x=fa[top[x]];
+    }
+    return a;
+}
 int main(){
     scanf("%d",&n);
     for(int i=1;i<=n-1;i++){
@@ -112,18 +120,17 @@ int main(){
             tr.change(1,dfn[x],y);
         else if(s[1]=='M'){
             int a=-10000000;
-            while(x){
+            while(top[x]!=top[y]){
+                if(dep[top[x]]<dep[top[y]])
+                    swap(x,y);
                 a=max(a,tr.askmax(1,dfn[top[x]],dfn[x]));
                 x=fa[top[x]];
             }
+            a=max(a,tr.askmax(1,min(dfn[x],dfn[y]),max(dfn[x],dfn[y])));
             printf("%d\n",a);
         }
         else {
-            int a=0;
-            while(x){
-                a+=tr.askadd(1,dfn[top[x]],dfn[x]);
-                x=fa[top[x]];
-            }
+            int a=askadd(x)-askadd(lca(x,y))+askadd(y)-askadd(fa[lca(x,y)]);
             printf("%d\n",a);
         }
     }
