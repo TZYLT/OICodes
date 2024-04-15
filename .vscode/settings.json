@@ -99,7 +99,9 @@
     "stdexcept": "cpp",
     "streambuf": "cpp",
     "system_error": "cpp",
-    "thread": "cpp"
+    "thread": "cpp",
+    "csetjmp": "cpp",
+    "cstdlib": "cpp"
   },
   "cmake.configureOnOpen": true
 }

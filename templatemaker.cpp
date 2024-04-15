@@ -43,6 +43,5 @@ int main(){
 	fflush(stdout);
 	fclose(stdout);
 	system(n.c_str());
-	clog<<"Finished!\nAgain?(0/1):";
+	clog<<"Finished!";
 }
-

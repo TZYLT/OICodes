@@ -45,7 +45,7 @@
 			"        if(ri>mid)change(p*2+1,li,ri,d);",
 			"        sum[p]=sum[p*2]+sum[p*2+1];",
 			"    }",
-			"    long long :ask(int p,int li,int ri){",
+			"    long long ask(int p,int li,int ri){",
 			"        if(li<=l[p]&&ri>=r[p]) return sum[p];",
 			"        spread(p);",
 			"        int mid=(l[p]+r[p])/2;",
