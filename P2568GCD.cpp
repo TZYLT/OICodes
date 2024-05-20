@@ -2,7 +2,7 @@
 using namespace std;
 #define M 10000100
 long long v[M],p[M],phi[M],k,sp[M];
-void linearSieve(int n){
+void linearSieve_mu(int n){
     phi[1]=v[1]=1;
     for(int i=2;i<=n;i++){
         if(!v[i]){
@@ -22,7 +22,7 @@ void linearSieve(int n){
 int n;
 long long ans;
 int main(){
-    linearSieve(10000000);
+    linearSieve_mu(10000000);
     for(int i=1;i<=10000000;i++)
         sp[i]=sp[i-1]+phi[i];
     scanf("%d",&n);

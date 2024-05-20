@@ -3,7 +3,7 @@ using namespace std;
 #define M 50050
 int v[M],mo[M],smo[M],p[M],k;
 
-void linearSieve(int n){
+void linearSieve_mu(int n){
     mo[1]=v[1]=1;
     for(int i=2;i<=n;i++){
         if(!v[i])p[++k]=i,mo[i]=-1;
@@ -21,7 +21,7 @@ long long s[M];
 int n,m,t;
 int main(){
     scanf("%d",&t);
-    linearSieve(50000);
+    linearSieve_mu(50000);
 
     for(int i=1;i<=50000;i++){
         smo[i]=smo[i-1]+mo[i];

@@ -2,7 +2,7 @@
 using namespace std;
 bool v[300100];
 int p[30010],k,ans=1;
-void linearSieve(int n){
+void linearSieve_mu(int n){
     v[1]=1;
     for(int i=2;i<=n;i++){
         if(!v[i])p[++k]=i;
@@ -21,7 +21,7 @@ bool isp(int x){
 int n;
 int main(){
     scanf("%d",&n);
-    linearSieve(300000);
+    linearSieve_mu(300000);
     if(n<=300000){
         for(int i=1;i<=k;i++)
             if(n>=p[i])
