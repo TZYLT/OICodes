@@ -14,7 +14,7 @@
 			"            dfsI(ver[i],x);",
 			"            _size[x]+=_size[ver[i]];",
 			"            if(s<_size[ver[i]])s=_size[ver[i]],hson[x]=ver[i];",
-			"        }        ",
+			"        }",
 			"}",
 			"void dfsII(int x,int tp){",
 			"    top[x]=tp;",
