@@ -90,7 +90,49 @@ void polyln(int len,int *a){
     NTT(a,-1);
     polyint(len,a);
 }
+int T,n,a[M],f[M];
+void mg(int l,int r,int *x){
+    if(l==r){
+		x[0]=1;x[1]=p-a[l];
+		return;
+	}
+    int mid=(l+r)>>1;
+    int y[M];
+    for(int i=0;i<=(1<<(__lg(r-l+1)+2));i++)
+        y[i]=0;
+    mg(l,mid,x);
+    mg(mid+1,r,y);
+    lim=(1<<(__lg(r-l+1)+2));
+    NTT(x,1);
+    NTT(y,1);
+    for(int i=0;i<lim;i++)
+        x[i]=1ll*x[i]*y[i]%p;
+    NTT(x,-1);
+}
 int main(){
     inv_liner(M-1000);
-    
+    scanf("%d",&T);
+    while(T--){
+        scanf("%d",&n);
+        memset(a,0,sizeof(a));
+        memset(pinv,0,sizeof(pinv));
+        memset(f,0,sizeof(f));
+        for(int i=0;i<n;i++)
+            scanf("%d",a+i);
+        mg(0,n-1,f);
+        polyln(n,f);
+        polyderive(n+1,f);
+        for(int i=n+1;i>=0;i--)
+            f[i]=f[i-1];
+        
+        for(int i=0;i<=n;i++)
+            f[i]=(p-f[i])%p;
+        f[0]=n;
+        int ans=0;
+        for(int i=1;i<=n;i++)
+            ans^=f[i];
+        printf("%d\n",ans);
+        
+    }
 }
+
