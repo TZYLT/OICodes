@@ -5,12 +5,12 @@
       "args": [],
       "cwd": "${fileDirname}",
       "env": {
-        "PATH": "C:\\Program Files (x86)\\Dev-Cpp\\MinGW32\\bin;${env:PATH}"
+        "PATH": "C:\\mingw64\\bin;${env:PATH}"
       },
       "environment": [],
       "externalConsole": true,
       "internalConsosleOptions": "neverOpen",
-      "miDebuggerPath": "C:\\Program Files (x86)\\Dev-Cpp\\MinGW32\\bin\\gdb.exe",
+      "miDebuggerPath": "C:\\mingw64\\bin\\gdb.exe",
       "name": "single file debug",
       "preLaunchTask": "single file build",
       "program": "${fileDirname}\\${fileBasenameNoExtension}.exe",
@@ -25,8 +25,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "e:/WorkSpace",
-      "program": "e:/WorkSpace/build/Debug/outDebug",
+      "cwd": "d:/WorkSpace",
+      "program": "d:/WorkSpace/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

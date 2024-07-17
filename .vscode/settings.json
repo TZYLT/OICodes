@@ -133,7 +133,11 @@
     "limits": "cpp",
     "mutex": "cpp",
     "typeindex": "cpp",
-    "typeinfo": "cpp"
+    "typeinfo": "cpp",
+    "ios": "cpp",
+    "xiosbase": "cpp",
+    "xstring": "cpp",
+    "queue": "cpp"
   },
   "cmake.configureOnOpen": true
 }
