@@ -12,10 +12,12 @@
         "-o",
         "${fileDirname}\\${fileBasenameNoExtension}.exe",
         "-std=c++14",
+        "-pedantic",
         "-Wall",
+        "-Wextra",
         "-O2",
-        "-static-libgcc",
-        "-static-libstdc++"
+        "-Werror",
+        "-fexec-charset=GBK"
       ],
       "command": "C:\\mingw64\\bin\\g++.exe",
       "group": {
@@ -55,6 +57,29 @@
       },
       "problemMatcher": [],
       "type": "pause-console"
+    },
+    {
+      "args": [
+        "-ExecutionPolicy",
+        "ByPass",
+        "-NoProfile",
+        "-File",
+        "C:\\Users\\Administrator\\AppData\\Roaming\\vscch/check-ascii.ps1",
+        "${fileDirname}\\${fileBasenameNoExtension}.exe"
+      ],
+      "command": "C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\powershell.exe",
+      "dependsOn": "single file build",
+      "label": "ascii check",
+      "presentation": {
+        "clear": true,
+        "echo": false,
+        "focus": false,
+        "panel": "shared",
+        "reveal": "never",
+        "showReuseMessage": false
+      },
+      "problemMatcher": [],
+      "type": "process"
     }
   ],
   "version": "2.0.0"

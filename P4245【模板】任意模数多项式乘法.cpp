@@ -82,8 +82,8 @@ int main(){
         //ans=(1ll*ans+1ll*f1[i]*c1%pp)%pp;
         //ans=(1ll*ans+1ll*f2[i]*c2%pp)%pp;
         //ans=(1ll*ans+1ll*f3[i]*c3%pp)%pp;
-        long long x = static_cast<long long> (f2[i] - f1[i] + mod[1]) % mod[1] * inv_1 % mod[1] * mod[0] + f1[i];
-		long long ans=(static_cast<long long> (f3[i] - x % mod[2] + mod[2]) % mod[2] * inv_2 % mod[2] * (1ll*mod[0]*mod[1] % pp) % pp + x) % pp;
+        long long x =1ll*(f2[i]-f1[i]+mod[1])%mod[1]*inv_1%mod[1]*mod[0]+f1[i];
+		long long ans=(1ll*(f3[i]-x%mod[2]+mod[2])%mod[2]*inv_2%mod[2]*(1ll*mod[0]*mod[1]%pp)%pp+x)%pp;
 		//long long x=1ll*(1ll*f2[i]-f1[i]+mod[1])%mod[1]*qpow(mod[0],mod[1]-2,mod[1])%mod[1]*mod[0]+f1[i];
 		//long long ans=(1ll*(1ll*f3[i]-x%mod[2]+mod[2])%mod[2]*qpow(1ll*mod[0]*mod[1]%mod[2],mod[2]-2,mod[2])%mod[2]*((1ll*mod[0]*mod[1]%mod[2])%pp)%pp+x)%pp;
         printf("%d ",ans);

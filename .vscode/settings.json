@@ -137,7 +137,8 @@
     "ios": "cpp",
     "xiosbase": "cpp",
     "xstring": "cpp",
-    "queue": "cpp"
+    "queue": "cpp",
+    "xutility": "cpp"
   },
   "cmake.configureOnOpen": true
 }

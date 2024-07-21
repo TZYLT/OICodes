@@ -2,10 +2,12 @@
 	"folders": [
 		{
 			"path": "."
-		},
-		{
-			"path": "../C++项目"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"files.associations": {
+			"stack": "cpp",
+			"random": "cpp"
+		}
+	}
 }
