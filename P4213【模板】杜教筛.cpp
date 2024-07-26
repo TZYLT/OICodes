@@ -21,7 +21,6 @@ void linearSieve_mu(int n){
     }
     for(int i=1;i<=n;i++)
         smu[i]=smu[i-1]+mu[i],sphi[i]=sphi[i-1]+phi[i];
-
 }
 long long getmu(long long n){
     if(n<N)return smu[n];
