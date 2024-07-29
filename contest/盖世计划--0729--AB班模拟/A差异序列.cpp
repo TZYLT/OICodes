@@ -1,0 +1,32 @@
+#include<bits/stdc++.h>
+using namespace std;
+#define M 101
+#define p 998244353
+int f[M][M][M],g[M][M][M],K[M][M][M];
+int n,m;
+int main(){
+    freopen("sequence.in","r",stdin);
+    freopen("sequence.out","w",stdout);
+    scanf("%d%d",&n,&m);
+    K[0][0][0]=1;
+    for(int i=0;i<=n;i++)
+        for(int a=0;a<=m;a++)
+            for(int b=0;b<=m;b++){
+                for(int j=a;j<=m;j++)
+                    for(int k=b;k<=m;k++){
+                        K[i+1][j][k]=(K[i+1][j][k]+K[i][a][b])%p;
+                    }
+                for(int j=a;j<=m;j++)
+                    for(int k=b;k<=m;k++){
+                        int t=abs((j-a)-(k-b));
+                        g[i+1][j][k]=((g[i+1][j][k]+g[i][a][b])%p+1ll*K[i][a][b]*t%p)%p;
+                    }
+                for(int j=a;j<=m;j++)
+                    for(int k=b;k<=m;k++){
+                        int t=abs((j-a)-(k-b));
+                        f[i+1][j][k]=(((f[i+1][j][k]+1ll*K[i][a][b]*t%p*t%p)%p+2ll*t*g[i][a][b])%p+f[i][a][b])%p;
+                    }
+            }
+    printf("%d",f[n][m][m]%p);
+                
+}   
