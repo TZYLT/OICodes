@@ -1,0 +1,23 @@
+{
+	"Print to console": {
+		"scope": "cpp,c++",
+		"prefix": "trie",
+		"body": [
+			"struct node{",
+			"    int son[$0],tag;",
+			"};",
+			"node tr[$1];",
+			"int cnt;",
+			"int insert(string &s){",
+			"    int now=0;",
+			"    for(int i=0;i<s.size();i++){",
+			"        if(tr[now].son[s[i]-'a'])now=tr[now].son[s[i]-'a'];",
+			"        else tr[now].son[s[i]-'a']=++cnt,now=cnt;",
+			"    }",
+			"    tr[now].tag=1;",
+			"    return now;",
+			"}",
+		],
+		"description": ""
+	}
+}

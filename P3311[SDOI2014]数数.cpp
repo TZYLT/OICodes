@@ -20,6 +20,7 @@ void insert(string &s){
 
 void getfail(void){
     queue<int> q;
+    while(q.size()) q.pop();
     for(auto c:tr[0].son)
         if(c)q.push(c);
     while(q.size()){
@@ -52,17 +53,18 @@ int main(){
     f[0][0][0]=1;
     for(int k=1;k<=9;k++)
         if(tr[tr[0].son[k]].tag==0)
-            if(k<=t[0]-'0')f[1][tr[0].son[k]][!(k==(t[0]-'0'))]=1;
-    for(int i=1;i<n;i++){
+            if(k<=t[0]-'0')f[1][tr[0].son[k]][k!=(t[0]-'0')]=1;
+    for(int i=1;i<=n;i++){
         for(int k=1;k<=9;k++)
             if(tr[tr[0].son[k]].tag==0)
                 f[i+1][tr[0].son[k]][1]=(f[i+1][tr[0].son[k]][1]+1)%p;
         for(int j=0;j<=cnt;j++)
+            if(tr[j].tag==0)
             for(int k=0;k<=9;k++){
                 if(tr[tr[j].son[k]].tag==0){
                     f[i+1][tr[j].son[k]][1]=(f[i+1][tr[j].son[k]][1]+f[i][j][1])%p;
                     if(k<=t[i]-'0')
-                        f[i+1][tr[j].son[k]][!(k==(t[i]-'0'))]=(f[i+1][tr[j].son[k]][!(k==(t[i]-'0'))]+f[i][j][0])%p;
+                        f[i+1][tr[j].son[k]][k!=(t[i]-'0')]=(f[i+1][tr[j].son[k]][k!=(t[i]-'0')]+f[i][j][0])%p;
                 }
             }
     }

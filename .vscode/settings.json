@@ -138,7 +138,24 @@
     "xiosbase": "cpp",
     "xstring": "cpp",
     "queue": "cpp",
-    "xutility": "cpp"
+    "xutility": "cpp",
+    "barrier": "cpp",
+    "compare": "cpp",
+    "concepts": "cpp",
+    "coroutine": "cpp",
+    "expected": "cpp",
+    "source_location": "cpp",
+    "format": "cpp",
+    "latch": "cpp",
+    "numbers": "cpp",
+    "ranges": "cpp",
+    "semaphore": "cpp",
+    "span": "cpp",
+    "spanstream": "cpp",
+    "stacktrace": "cpp",
+    "stdfloat": "cpp",
+    "stop_token": "cpp",
+    "syncstream": "cpp"
   },
   "cmake.configureOnOpen": true
 }

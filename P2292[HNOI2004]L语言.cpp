@@ -1,7 +1,7 @@
 #include<bits/stdc++.h>
 using namespace std;
 struct node{
-    int son[26],fail,tag,dep;
+    int son[26],fail,tag,dep,st;
 };
 node tr[400100];
 int cnt;
@@ -16,6 +16,7 @@ void insert(string &s){
         }
     }
     tr[now].tag=1;
+    tr[now].st=(1<<(tr[now].dep-1));
 }
 
 void getfail(void){
@@ -27,6 +28,7 @@ void getfail(void){
         for(int i=0;i<=25;i++)  
             if(tr[x].son[i]){
                 tr[tr[x].son[i]].fail=tr[tr[x].fail].son[i];
+                tr[tr[x].son[i]].st|=tr[tr[tr[x].son[i]].fail].st;
                 q.push(tr[x].son[i]);
             }
             else tr[x].son[i]=tr[tr[x].fail].son[i];
@@ -46,16 +48,19 @@ int main(){
     for(int i=1;i<=m;i++){
         string t;
         cin>>t;
-        int now=0,h=0;
+        int now=0;
+        bool f[t.size()+10]={0};
+        f[0]=1;
+        int last=1;
         for(int i=0;i<t.size();i++){
             now=tr[now].son[t[i]-'a'];
-            for(int j=now;j;j=tr[j].fail){
-                if(tr[j].tag==1&&tr[j].dep==(i-h+1)){
-                    h=i+1;
-                    break;
-                }
-            }
+            f[i+1]=((last&tr[now].st)>0?1:0);
+            last<<=1;
+            last+=f[i+1];
         }
-        cout<<h<<endl;
+        int ans=0;
+        for(int i=t.size();i>=0;i--)
+            if(f[i]){ans=i;break;}
+        cout<<ans<<endl;
     }
 }

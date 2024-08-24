@@ -6,7 +6,7 @@
 			"",
 			"template <int C>",
 			"struct DisjointSet{",
-			"	int fa[C];",
+			"    int fa[C];",
 			"    DisjointSet<C>& init(void){",
 			"        for(int i=0;i<C;i++)",
 			"                fa[i]=i; ",

@@ -24,6 +24,7 @@ int main(){
 	clog<<"Code:";
 	printf("\t\t\"body\": [\n");
 	string c;int sum=0;
+	getline(cin,c);
 	while(getline(cin,c)){
 		if(c[0]=='d'&&c[1]=='o'&&c[2]=='n'&&c[3]=='e')break;
 		printf("\t\t\t\"");

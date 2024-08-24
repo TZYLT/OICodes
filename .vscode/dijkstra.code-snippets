@@ -17,7 +17,7 @@
 			"        if(v[x])continue;",
 			"        v[x]=1;",
 			"        for(int i=head[x];i;i=nextt[i]){",
-			"            int y=ver[i],z=wei[i];",
+			"            int y=ver[i],z=edge[i];",
 			"            if(d[y]>d[x]+z){",
 			"                d[y]=d[x]+z;",
 			"                q.push(make_pair(-d[y],y));",
