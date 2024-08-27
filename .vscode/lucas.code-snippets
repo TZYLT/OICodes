@@ -3,7 +3,6 @@
 		"scope": "cpp,c++",
 		"prefix": "lucas",
 		"body": [
-			"",
 			"int Combination(int n,int m,int p){",
 			"    return (long long)sum[n]*suminv[n-m]%p*suminv[m]%p;",
 			"}",

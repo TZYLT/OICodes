@@ -1,0 +1,13 @@
+{
+	"Print to console": {
+		"scope": "cpp,c++",
+		"prefix": "fastwriteunsigned",
+		"body": [
+			"inline void print(long long x){",
+			"    if(x>9)print(x/10);",
+			"    putchar(x%10+'0');",
+			"}",
+		],
+		"description": ""
+	}
+}

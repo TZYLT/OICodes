@@ -1,0 +1,22 @@
+{
+	"Print to console": {
+		"scope": "cpp,c++",
+		"prefix": "fastreadint",
+		"body": [
+			"#define gc() (p1==p2&&(p2=(p1=buf)+fread(buf,1,1<<20,stdin),p1==p2)?EOF:*p1++)",
+			"char *p1,*p2,buf[1<<20+5];",
+			"inline int read(){",
+			"    int x=0,f=1;",
+			"    char c=gc();",
+			"    while(!isdigit(c)){",
+			"        if(c=='-')f=-1;",
+			"        c=gc();",
+			"    }while(isdigit(c)){",
+			"        x=x*10+(c^48);",
+			"        c=gc();",
+			"    }return x*f;",
+			"}",
+		],
+		"description": ""
+	}
+}

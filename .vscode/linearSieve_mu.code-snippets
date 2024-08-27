@@ -3,7 +3,6 @@
 		"scope": "cpp,c++",
 		"prefix": "linearSieve_mu",
 		"body": [
-			"",
 			"int v[$0],mu[$0],p[$0],k;",
 			"void linearSieve_mu(int n){",
 			"    mu[1]=v[1]=1;",

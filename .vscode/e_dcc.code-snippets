@@ -3,8 +3,6 @@
 		"scope": "cpp,c++",
 		"prefix": "edcc",
 		"body": [
-			"",
-			"",
 			"int dfn[$0],low[$0],bridge[$0],v[$0],c,s;",
 			"void dfsI(int x,int ine){",
 			"    s++;",

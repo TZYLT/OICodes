@@ -3,7 +3,6 @@
 		"scope": "cpp,c++",
 		"prefix": "GaussianElimination",
 		"body": [
-			"",
 			"int a[$1][$0];",
 			"bool GE(void){",
 			"    for(int i=1;i<=n;i++){",

@@ -3,7 +3,6 @@
 		"scope": "cpp,c++",
 		"prefix": "qpow",
 		"body": [
-			"",
 			"long long qpow(long long a,long long k,long long p){",
 			"	long long res=1;",
 			"	while(k){",

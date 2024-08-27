@@ -3,7 +3,6 @@
 		"scope": "cpp,c++",
 		"prefix": "polyint",
 		"body": [
-			"",
 			"int inv[M];",
 			"void inv_liner(int n){",
 			"    inv[1]=1;",

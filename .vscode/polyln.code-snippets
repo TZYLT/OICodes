@@ -3,7 +3,6 @@
 		"scope": "cpp,c++",
 		"prefix": "polyln",
 		"body": [
-			"",
 			"#define M (1<<20)",
 			"#define p 998244353",
 			"#define g 3",

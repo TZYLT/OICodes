@@ -3,7 +3,6 @@
 		"scope": "cpp,c++",
 		"prefix": "DisjointSet",
 		"body": [
-			"",
 			"template <int C>",
 			"struct DisjointSet{",
 			"    int fa[C];",

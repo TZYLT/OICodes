@@ -3,7 +3,6 @@
 		"scope": "cpp,c++",
 		"prefix": "FFT",
 		"body": [
-			"",
 			"struct Complex{",
 			"    double r,i;",
 			"    Complex(){r=0;i=0;}",

@@ -3,7 +3,6 @@
 		"scope": "cpp,c++",
 		"prefix": "SegmentTree_add",
 		"body": [
-			"",
 			"template <int C>",
 			"struct SegmentTree{",
 			"	int l[4*C+1],r[4*C+1];",

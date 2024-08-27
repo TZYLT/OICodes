@@ -3,7 +3,6 @@
 		"scope": "cpp,c++",
 		"prefix": "polyinv",
 		"body": [
-			"",
 			"#define p 998244353",
 			"#define g 3",
 			"long long qpow(long long a,long long k){",

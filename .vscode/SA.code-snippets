@@ -3,7 +3,6 @@
 		"scope": "cpp,c++",
 		"prefix": "sa",
 		"body": [
-			"",
 			"int cnt[$1],x[$1],y[$1],sa[$1];",
 			"int m,n;",
 			"void getsa(string &s){",

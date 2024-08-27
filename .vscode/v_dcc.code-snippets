@@ -3,7 +3,6 @@
 		"scope": "cpp,c++",
 		"prefix": "v_dcc",
 		"body": [
-			"",
 			"int dfn[$0],low[$0],c,id;",
 			"int st[$0],h;",
 			"vector<int> ans[$0];",

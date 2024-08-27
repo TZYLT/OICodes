@@ -3,7 +3,6 @@
 		"scope": "cpp,c++",
 		"prefix": "dijkstra",
 		"body": [
-			"",
 			"int v[$0],d[$0];",
 			"priority_queue<pair<int,int> > q;",
 			"void dijkstra(){",

@@ -3,7 +3,6 @@
 		"scope": "cpp,c++",
 		"prefix": "kmp_fic",
 		"body": [
-			"",
 			"int nxt[$0];",
 			"void kmp(string &s){",
 			"    nxt[1]=0;",

@@ -3,7 +3,6 @@
 		"scope": "cpp,c++",
 		"prefix": "lca_tcp",
 		"body": [
-			"",
 			"int _size[$0],dep[$0],hson[$0],fa[$0],top[$0];",
 			"void dfsI(int x,int ffa){",
 			"    int s=-1;",

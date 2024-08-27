@@ -3,7 +3,6 @@
 		"scope": "cpp,c++",
 		"prefix": "NTT",
 		"body": [
-			"",
 			"#define p $0",
 			"long long qpow(long long a,long long k){",
 			"    long long res=1;",
