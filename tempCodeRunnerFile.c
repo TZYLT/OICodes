@@ -1,113 +1,80 @@
-#include <algorithm>
-#include <cstdio>
-#include <iostream>
+#include<bits/stdc++.h>
 using namespace std;
-typedef long long ll;
-const int N   = 2000005;
-const int mod = 1000000007;
-ll p[N];
-int max_p[N], cnt[N];
-int prime[555555], pcnt;
-bool pvis[N];
-int n;
-void getP(int n) {
-    for (int i = 2; i <= n; i++) {
-        if (!pvis[i]) {
-            prime[++pcnt] = i;
-        }
-        for (int j = 1; j <= pcnt; j++) {
-            if (prime[j] * i > n)
-                break;
-            pvis[prime[j] * i] = 1;
-            if (i % prime[j] == 0)
-                break;
-        }
-    }
+#define M 10010
+int head[M],nextt[M],ver[M],w[M],c[M],cnt;
+void add(int x,int y){
+    ++cnt;
+    ver[cnt]=y;
+    nextt[cnt]=head[x];
+    head[x]=cnt;
 }
-ll qpow(int a, int k) {
-    ll res = 1, base = a;
-    while (k) {
-        if (k & 1) {
-            res = (res * base) % mod;
-        }
-        base = (base * base) % mod;
-        k /= 2;
-    }
-    return res;
+int head1[M],nextt1[M],ver1[M],cnt1;
+void add1(int x,int y){
+    ++cnt1;
+    ver1[cnt1]=y;
+    nextt1[cnt1]=head1[x];
+    head1[x]=cnt1;
 }
-inline void update(int p, int k) {
-    if (k > max_p[p]) {
-        max_p[p] = k;
-        cnt[p]   = 1;
-    } else if (k == max_p[p]) {
-        ++cnt[p];
-    }
+
+bool v[5050];
+void dfs_btr(int x,int fa,int top){
+    if(v[x]&&top!=x)add1(top,x),add1(x,top),top=x;
+    for(int i=head[x];i;i=nextt[i])
+        if(ver[i]!=fa)
+            dfs_btr(ver[i],x,top);
 }
-bool check(int x) {
-    if (pvis[x]) {
-        for (int i = 1; i <= pcnt; i++) {
-            if (prime[i] * prime[i] > x) {
-                break;
-            }
-            int k = 0;
-            while (x % prime[i] == 0) {
-                x /= prime[i];
-                k++;
-            }
-            if (max_p[prime[i]] == k && cnt[prime[i]] == 1) {
-                return false;
-            }
-        }
-        if (x > 1 && max_p[x] == 1 && cnt[x] == 1)
-            return false;
-        return true;
-    } else {
-        if (max_p[x] == 1 && cnt[x] == 1)
-            return false;
-        return true;
+int t=0;
+int dp[5050][5050],ans=0;
+
+void dfs(int x,int fa){
+    if(v[x]){
+        for(int i=0;i<=t;i++)
+            dp[x][i]=dp[fa][i];
+        for(int i=c[x];i<=t;i++)
+            dp[x][i]=max(dp[fa][i-c[x]]+w[x],dp[x][i]),ans=max(ans,dp[x][i]);
+    }else{
+        for(int i=0;i<=t;i++)
+            dp[x][i]=dp[fa][i],ans=max(ans,dp[x][i]);
     }
+    for(int i=head1[x];i;i=nextt1[i])
+        if(ver1[i]!=fa)dfs(ver1[i],x);
 }
-ll lcm  = 1;
-int nya = 3;
-bool vis[N];
-int main() {
-    cin >> n;
-    for (int i = 1; i <= n; ++i) {
-        cin >> p[i];
+int n,m;
+int main(){
+    scanf("%d%d",&n,&m);
+    for(int i=1;i<=n;i++)
+        scanf("%d",w+i);
+    for(int i=1;i<=n;i++)
+        scanf("%d",c+i);
+    for(int i=1;i<n;i++){
+        int x,y;
+        scanf("%d%d",&x,&y);
+        add(x,y);
+        add(y,x);
     }
-    sort(p + 1, p + n + 1);
-    getP(p[n]);
-    for (int i = n; i >= 1; i--) {
-        if (max_p[p[i]]) {
-            int val = p[i] - 1;
-            for (int j = 1; j <= pcnt; j++) {
-                if (prime[j] * prime[j] > val)
-                    break;
-                int k = 0;
-                while (val % prime[j] == 0) {
-                    val /= prime[j];
-                    k++;
-                }
-                k != 0 ? update(prime[j], k) : (void)nya;
-            }
-            if (val > 1) {
-                update(val, 1);
-            }
-            vis[i] = 1;
-        } else {
-            update(p[i], 1);
+    while(m--){
+        int k;
+        scanf("%d%d",&t,&k);
+        for(int i=1;i<=k;i++){
+            int x;
+            scanf("%d",&x);
+            v[x]=1;
         }
+        dfs_btr(1,0,1);
+        
+        dfs(1,0);
+        printf("%d\n",ans);
+
+        v[1]=1;
+        for(int i=1;i<=n;i++)
+            if(v[i])
+                for(int j=0;j<=t;j++)
+                    dp[i][j]=0;
+        for(int i=0;i<=n;i++)
+            head1[i]=0;
+        for(int i=0;i<=cnt1;i++)
+            nextt1[i]=ver1[i]=0;
+        cnt1=0;ans=0;
+        memset(v,0,sizeof v);
     }
-    for (int i = 1; i <= pcnt; i++) {
-        if (max_p[prime[i]]) {
-            lcm = 1ll * lcm * qpow(prime[i], max_p[prime[i]]) % mod;
-        }
-    }
-    for (int i = 1; i <= n; i++) {
-        if ((vis[i] && check(p[i] - 1)) || (!vis[i] && check(p[i]))) {
-            lcm = (lcm + 1) % mod;
-            break;
-        }
-    }
-    cout << lcm;
 }

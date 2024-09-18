@@ -81,7 +81,7 @@ void TreapTree<C>::del(int &p,int x){
 			p=tree[p].lc+tree[p].rc;
 			return;
 		}
-		if(tree[tree[p].lc].pri<tree[tree[p]].pri){
+		if(tree[tree[p].lc].pri<tree[tree[p].rc].pri){
 			rotate(p,0);
 			del(tree[p].rs,x);
 			return;
