@@ -1,0 +1,1 @@
+{"name":"Luogu_P5490","url":"https://www.luogu.com.cn/problem/P5490","memoryLimit":524288,"timeLimit":1000,"tests":[{"id":1727435522470,"input":"2\n100 100 200 200\n150 150 250 255\n","output":"18000\n"}],"group":"luogu","srcPath":"e:\\WorkSpace\\Luogu_P_5490.cpp"}

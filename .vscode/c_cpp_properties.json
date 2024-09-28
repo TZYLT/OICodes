@@ -10,6 +10,21 @@
             "intelliSenseMode": "windows-gcc-x86",
             "name": "windows-clang-x64",
             "cStandard": "${default}"
+        },
+        {
+            "name": "Win32",
+            "includePath": [
+                "${workspaceFolder}/**"
+            ],
+            "defines": [
+                "_DEBUG",
+                "UNICODE",
+                "_UNICODE"
+            ],
+            "compilerPath": "C:\\Program Files (x86)\\Dev-Cpp\\MinGW32\\bin\\gcc.exe",
+            "intelliSenseMode": "windows-gcc-x86",
+            "cStandard": "c17",
+            "cppStandard": "c++17"
         }
     ],
     "version": 4

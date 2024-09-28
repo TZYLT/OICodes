@@ -1,0 +1,1 @@
+{"name":"Luogu_P2880","url":"https://www.luogu.com.cn/problem/P2880","memoryLimit":128000,"timeLimit":1000,"tests":[{"id":1727338255325,"input":"6 3\n1\n7\n3\n4\n2\n5\n1 5\n4 6\n2 2","output":"6\n3\n0"}],"group":"luogu","srcPath":"e:\\WorkSpace\\Luogu_P_2880.cpp"}
