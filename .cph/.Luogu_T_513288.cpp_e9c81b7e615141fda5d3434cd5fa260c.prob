@@ -1,0 +1,1 @@
+{"name":"Luogu_T513288","url":"https://www.luogu.com.cn/problem/T513288?contestId=198975","memoryLimit":524288,"timeLimit":1000,"tests":[{"input":"10 4\n1 3 2 4 3 5 4 6 5 7","output":"Yes","id":1727505667398},{"id":1727505667415,"input":"10 11\n1 3 2 4 3 5 4 6 5 7","output":"No"}],"group":"luogu - 198975","srcPath":"e:\\WorkSpace\\Luogu_T_513288.cpp"}
