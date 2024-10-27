@@ -54,9 +54,5 @@ struct Matrix{
 	}
 };
 int main(){
-	Matrix<10,10,int> a,b;
-	a.setIdentity();b.setClear();
-	a.fiction([](int x){return x+1;});
-	a=a*b;
-	a=a+b;
+	Matrix<2,3,int> A;
 }
