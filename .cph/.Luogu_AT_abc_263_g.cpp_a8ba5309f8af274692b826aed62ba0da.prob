@@ -1,0 +1,1 @@
+{"name":"Luogu_AT_abc263_g","url":"https://www.luogu.com.cn/problem/AT_abc263_g","memoryLimit":1048576,"timeLimit":2000,"tests":[{"input":"3\r\n3 3\r\n2 4\r\n6 2","output":"3","id":1730877403703},{"id":1730877403720,"input":"1\r\n1 4","output":"2"}],"group":"luogu","srcPath":"e:\\WorkSpace\\Luogu_AT_abc_263_g.cpp"}

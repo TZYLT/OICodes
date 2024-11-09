@@ -1,0 +1,1 @@
+{"name":"Luogu_AT_arc139_d","url":"https://www.luogu.com.cn/problem/AT_arc139_d","memoryLimit":1048576,"timeLimit":2000,"tests":[{"input":"2 4 2 1\r\n1 3","output":"99","id":1730967849717},{"id":1730967849705,"input":"5 9 6 3\r\n3 7 1 9 9","output":"15411789"}],"group":"luogu","srcPath":"e:\\WorkSpace\\Luogu_AT_arc_139_d.cpp"}

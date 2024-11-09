@@ -1,0 +1,1 @@
+{"name":"Luogu_AT_arc178_b","url":"https://www.luogu.com.cn/problem/AT_arc178_b","memoryLimit":1048576,"timeLimit":2000,"tests":[{"id":1730772330571,"input":"4\r\n1 1 1\r\n1 6 7\r\n167 167 167\r\n111 666 777","output":"36\r\n45\r\n731780675\r\n0"}],"group":"luogu","srcPath":"e:\\WorkSpace\\Luogu_AT_arc_178_b.cpp"}
