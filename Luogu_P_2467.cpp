@@ -42,7 +42,23 @@ void prts(ll x){prt(x);pc(' ');}
 void prts(ll x,string s){prt(x);for(auto c:s)pc(c);}
 void prtl(ll x){prt(x);pc('\n');}
 /*------------------------*/
-vector<int> ts;
+int n,p;
+int dp[2][4500][2],sum[4500][2];
 int main(){
-    ts.pb();
+    n=read();p=read();
+    dp[1][1][0]=dp[1][1][1]=1;
+    rep(i,2,n){
+        rep(j,1,i)
+            sum[j][0]=sum[j][1]=dp[i&1][j][0]=dp[i&1][j][1]=0;
+        rep(j,1,i)
+            sum[j][0]=(sum[j-1][0]+dp[i&1^1][j][0])%p,
+            sum[j][1]=(sum[j-1][1]+dp[i&1^1][j][1])%p; 
+        rep(j,1,i)
+            dp[i&1][j][0]=sum[j-1][1],
+            dp[i&1][j][1]=sum[i-1][0]+p-sum[j-1][0];
+    }
+    int ans=0;
+    rep(i,1,n)
+        (ans+=(dp[n&1][i][0]+dp[n&1][i][1])%p)%=p;
+    prtl(ans);
 }

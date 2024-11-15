@@ -42,7 +42,13 @@ void prts(ll x){prt(x);pc(' ');}
 void prts(ll x,string s){prt(x);for(auto c:s)pc(c);}
 void prtl(ll x){prt(x);pc('\n');}
 /*------------------------*/
-vector<int> ts;
 int main(){
-    ts.pb();
+    for(int i=2;i<=100;i+=2)
+        for(int j=2;j<=100;j+=2){
+            int tp=i*i+j*j;
+            int st=sqrt(tp);
+            if(st*st==tp){
+                pf("[%d,%d,%d]",i,j,st);
+            }
+        }
 }

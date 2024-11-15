@@ -2,6 +2,8 @@
 using namespace std;
 #define rep(x,l,r) for(int x=(l);x<=(r);x++)
 #define per(x,l,r) for(int x=(r);x>=(l);x--)
+#define ckmax(x,y) x=(x>(y)?x:(y))
+#define ckmin(x,y) x=(x<(y)?x:(y))
 #define ckmod(x,y) x=(x>=(y)?x-y:(x))
 #define frein(x) freopen(x,"r",stdin)
 #define freout(x) freopen(x,"w",stdout)
@@ -11,8 +13,6 @@ using namespace std;
 #define msl(x) memset(x,0xcf,sizeof(x))
 #define gc() getchar()
 #define pc(x) putchar(x)
-#define psb(x) push_back(x)
-#define ppb() pop_back()
 #define ll long long
 #define ull unsigned long long
 #define lf double
@@ -24,8 +24,6 @@ using namespace std;
 constexpr int inf=0x3f3f3f3f;
 constexpr ll infll=0x3f3f3f3f3f3f3f3f;
 /*------Common-Factions------*/
-template<class A,class B> inline void ckmax(A &x,B y){x=(x>(y)?x:(y));}
-template<class A,class B> inline void ckmin(A &x,B y){x=(x<(y)?x:(y));}
 ll read(){
     ll x=0,f=1;char c=gc();
     while(!isdigit(c)){if(c=='-')f=-1;c=getchar();}
@@ -42,7 +40,24 @@ void prts(ll x){prt(x);pc(' ');}
 void prts(ll x,string s){prt(x);for(auto c:s)pc(c);}
 void prtl(ll x){prt(x);pc('\n');}
 /*------------------------*/
-vector<int> ts;
+ll mod;
+ll n,K,dp[101][101][101][101],sum[101][101][101][101];
 int main(){
-    ts.pb();
+    n=read();K=read();mod=read();
+    dp[1][0][1][1]=1;sum[1][0][1][1]=1;
+    for(int i=2;i<=n;i++){
+		for(int j=0;j<=K;j++){
+			for(int a=1;a<=i;a++){
+				for(int b=1;b<=i;b++){
+					dp[i][j][a][b]=((dp[i][j][a][b]+sum[i-1][j-1][a-1][b-1])%mod+mod)%mod;
+					dp[i][j][a][b]=((dp[i][j][a][b]+sum[i-1][j][a-1][i-1]-sum[i-1][j][a-1][b-1])%mod+mod)%mod;
+					dp[i][j][a][b]=((dp[i][j][a][b]+sum[i-1][j][i-1][b-1]-sum[i-1][j][a-1][b-1])%mod+mod)%mod;
+					dp[i][j][a][b]=(((dp[i][j][a][b]+sum[i-1][j-1][i-1][i-1]-sum[i-1][j-1][a-1][i-1]-sum[i-1][j-1][i-1][b-1])%mod+sum[i-1][j-1][a-1][b-1])%mod+mod)%mod;
+					sum[i][j][a][b]=(((sum[i][j][a-1][b]+sum[i][j][a][b-1]-sum[i][j][a-1][b-1])%mod+mod)%mod+dp[i][j][a][b])%mod;
+				}
+			}
+		}
+	}
+	int ans=sum[n][K][n][n];
+    prtl(ans);
 }

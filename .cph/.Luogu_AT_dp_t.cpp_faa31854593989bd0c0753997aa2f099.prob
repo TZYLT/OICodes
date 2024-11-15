@@ -1,0 +1,1 @@
+{"name":"Luogu_AT_dp_t","url":"https://www.luogu.com.cn/problem/AT_dp_t","memoryLimit":1048576,"timeLimit":2000,"tests":[{"input":"4\r\n<><","output":"5","id":1731463496302},{"input":"5\r\n<<<<","output":"1","id":1731463496374},{"id":1731463496371,"input":"20\r\n>>>><>>><>><>>><<>>","output":"217136290"}],"group":"luogu","srcPath":"e:\\WorkSpace\\Luogu_AT_dp_t.cpp"}

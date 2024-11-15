@@ -2,14 +2,18 @@
     "configurations": [
         {
             "compilerPath": "C:/mingw64/bin/gcc.exe",
-            "cppStandard": "c++17",
+            "cppStandard": "${default}",
             "includePath": [
-                "${workspaceFolder}/**",
-                "${{workspaceFolder}}/**"
+                "${workspaceFolder}/**"
             ],
-            "intelliSenseMode": "windows-gcc-x86",
-            "name": "windows-clang-x64",
-            "cStandard": "${default}"
+            "intelliSenseMode": "windows-gcc-x64",
+            "name": "windows-gcc-x64",
+            "cStandard": "${default}",
+            "compilerArgs": [
+                "-Wall",
+                "-Wextra",
+                "-std=c++14"
+            ]
         },
         {
             "name": "Win32",

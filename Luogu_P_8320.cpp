@@ -1,7 +1,9 @@
 #include<bits/stdc++.h>
 using namespace std;
 #define rep(x,l,r) for(int x=(l);x<=(r);x++)
-#define per(x,l,r) for(int x=(r);x>=(l);x--)
+#define per(x,l,r) for(int x=(l);x>=(r);x--)
+#define ckmax(x,y) x=(x>(y)?x:(y))
+#define ckmin(x,y) x=(x<(y)?x:(y))
 #define ckmod(x,y) x=(x>=(y)?x-y:(x))
 #define frein(x) freopen(x,"r",stdin)
 #define freout(x) freopen(x,"w",stdout)
@@ -11,8 +13,6 @@ using namespace std;
 #define msl(x) memset(x,0xcf,sizeof(x))
 #define gc() getchar()
 #define pc(x) putchar(x)
-#define psb(x) push_back(x)
-#define ppb() pop_back()
 #define ll long long
 #define ull unsigned long long
 #define lf double
@@ -24,8 +24,6 @@ using namespace std;
 constexpr int inf=0x3f3f3f3f;
 constexpr ll infll=0x3f3f3f3f3f3f3f3f;
 /*------Common-Factions------*/
-template<class A,class B> inline void ckmax(A &x,B y){x=(x>(y)?x:(y));}
-template<class A,class B> inline void ckmin(A &x,B y){x=(x<(y)?x:(y));}
 ll read(){
     ll x=0,f=1;char c=gc();
     while(!isdigit(c)){if(c=='-')f=-1;c=getchar();}
@@ -42,7 +40,33 @@ void prts(ll x){prt(x);pc(' ');}
 void prts(ll x,string s){prt(x);for(auto c:s)pc(c);}
 void prtl(ll x){prt(x);pc('\n');}
 /*------------------------*/
-vector<int> ts;
+int ask(int x){
+    pf("? 1 %d\n",x);fflush(stdout);
+    return read();
+}
+void cg(int x){
+    pf("? 2 %d\n",x);fflush(stdout);
+}
+int sc(int l,int r,int x){
+    if(l==r)return l;
+    int mid=(l+r)>>1;
+    if(ask(mid)>=x)return sc(l,mid,x);
+    else return sc(mid+1,r,x);
+}
+int a[5050],n,t;
 int main(){
-    ts.pb();
+    t=read();
+    while(t--){
+        n=read();
+        msz(a);
+        rep(i,1,n){
+            int pos=sc(1,n,ask(n));
+            a[pos]=n-i+1;
+            if(i!=n)cg(pos);
+        }
+        pf("! ");
+        rep(i,1,n-1)
+            prts(a[i]);
+        prtl(a[n]);fflush(stdout);
+    }
 }

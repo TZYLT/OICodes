@@ -42,7 +42,48 @@ void prts(ll x){prt(x);pc(' ');}
 void prts(ll x,string s){prt(x);for(auto c:s)pc(c);}
 void prtl(ll x){prt(x);pc('\n');}
 /*------------------------*/
-vector<int> ts;
-int main(){
-    ts.pb();
+#define M 1001000
+#define int ll
+ll head[M],nextt[M],edge[M],ver[M],cnt;
+void add(int x,int y,int z){
+    ++cnt;
+    ver[cnt]=y;
+    edge[cnt]=z;
+    nextt[cnt]=head[x];
+    head[x]=cnt;
+}
+ll v[M],d[M];
+priority_queue<pair<ll,ll> > q;
+void dijkstra(int s){
+    memset(d,0x3f,sizeof(d));
+    memset(v,0,sizeof(v));
+    d[s]=0;
+    q.push(make_pair(0,s));
+    while(q.size()){
+        int x=q.top().second;
+        q.pop();
+        if(v[x])continue;
+        v[x]=1;
+        for(int i=head[x];i;i=nextt[i]){
+            int y=ver[i],z=edge[i];
+            if(d[y]>d[x]+z){
+                d[y]=d[x]+z;
+                q.push(make_pair(-d[y],y));
+            }
+        }
+    }
+}
+ll h,x,y,z;
+ll ans;
+signed main(){
+    h=read();x=read();y=read();z=read();
+    h--;
+    rep(i,0,x-1){
+        add(i,(i+y)%x,y);
+        add(i,(i+z)%x,z);
+    }
+    dijkstra(0);
+    rep(i,0,x-1)
+        if(h>=d[i])ans+=(h-d[i])/x+1;
+    prtl(ans);
 }

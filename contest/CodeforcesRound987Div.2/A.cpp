@@ -42,7 +42,17 @@ void prts(ll x){prt(x);pc(' ');}
 void prts(ll x,string s){prt(x);for(auto c:s)pc(c);}
 void prtl(ll x){prt(x);pc('\n');}
 /*------------------------*/
-vector<int> ts;
+int t,n;
 int main(){
-    ts.pb();
+    t=read();
+    while(t--){
+        n=read();
+        map<int,int> st;
+        rep(i,1,n)
+            st[read()]++;
+        int ans=0;
+        for(auto c:st)
+            ckmax(ans,c.second);
+        prtl(n-ans);
+    }
 }

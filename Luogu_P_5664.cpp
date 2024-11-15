@@ -42,7 +42,34 @@ void prts(ll x){prt(x);pc(' ');}
 void prts(ll x,string s){prt(x);for(auto c:s)pc(c);}
 void prtl(ll x){prt(x);pc('\n');}
 /*------------------------*/
-vector<int> ts;
+#define p 998244353
+#define N 105
+ll n,m;
+ll a[105][2020];
+ll s[105];
+ll f[105][210],g[105][105];
+ll ans=0;
 int main(){
-    ts.pb();
+    n=read();m=read();
+    rep(i,1,n)
+        rep(j,1,m)
+            (s[i]+=(a[i][j]=read()))%=p;
+    rep(pos,1,m){
+        msz(f);
+        f[0][N]=1;
+        rep(i,1,n)
+            rep(j,N-n,N+n)
+                f[i][j]=(f[i-1][j]+a[i][pos]*f[i-1][j-1]%p+(s[i]+p-a[i][pos])*f[i-1][j+1]%p)%p;
+        rep(i,1,n)
+            (ans+=f[n][N+i])%p;
+    }
+    g[0][0]=1;
+    rep(i,1,n)
+        rep(j,0,n)
+            if(j!=0)g[i][j]=(g[i-1][j]+s[i]*g[i-1][j-1]%p)%p;
+            else g[i][j]=g[i-1][j];
+    ans=p-ans;
+    rep(i,1,n)
+        (ans+=g[n][i])%=p;
+    prtl(ans);
 }

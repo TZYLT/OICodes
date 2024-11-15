@@ -42,7 +42,25 @@ void prts(ll x){prt(x);pc(' ');}
 void prts(ll x,string s){prt(x);for(auto c:s)pc(c);}
 void prtl(ll x){prt(x);pc('\n');}
 /*------------------------*/
-vector<int> ts;
+int n,m,a[505],c[4004000],s[4004000],dp[4004000],maxx;
 int main(){
-    ts.pb();
+    n=read();m=read();
+    rep(i,1,n){
+        a[i]=read();
+        c[a[i]]++;s[a[i]]+=a[i];
+        ckmax(maxx,a[i]);
+    }
+    rep(i,1,maxx+m-1)
+        c[i]+=c[i-1],s[i]+=s[i-1];
+    msu(dp);
+    rep(i,0,maxx+m-1){
+        dp[i]=i*c[i]-s[i];
+        rep(j,max(0,i-2*m+1),i-m)
+            ckmin(dp[i],dp[j]+i*(c[i]-c[j])-s[i]+s[j]);
+    }
+    int ans=inf;
+    rep(i,maxx,maxx+m-1)
+        ckmin(ans,dp[i]);
+    prtl(ans);
+
 }

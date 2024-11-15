@@ -42,7 +42,45 @@ void prts(ll x){prt(x);pc(' ');}
 void prts(ll x,string s){prt(x);for(auto c:s)pc(c);}
 void prtl(ll x){prt(x);pc('\n');}
 /*------------------------*/
-vector<int> ts;
+ll n,k,a[1001000];
+ll dp[1001000];
+template <int C>
+struct SegmentTree{
+    ll sum[4*C+1];
+    void change(int p,int l,int r,int x,ll d){
+        if(l>r)return;
+        if(x==l&&x==r)
+            return sum[p]=d,void(); 
+        
+        int mid=(l+r)/2;
+        if(x<=mid)change(p*2,l,mid,x,d);
+        if(x>mid)change(p*2+1,mid+1,r,x,d);
+        sum[p]=max(sum[p*2],sum[p*2+1]);
+    }
+    ll ask(int p,int l,int r,int li,int ri){
+        if(l>r)return -infll;
+        if(li<=l&&ri>=r) return sum[p];
+        int mid=(l+r)/2;
+        ll v=-infll;
+        if(li<=mid)ckmax(v,ask(p*2,l,mid,li,ri));
+        if(ri>mid)ckmax(v,ask(p*2+1,mid+1,r,li,ri));
+        return v;
+    } 
+};
+SegmentTree<1001000> s,f,fm;
 int main(){
-    ts.pb();
+    n=read();k=read();
+    rep(i,1,n)
+        a[i]=read();
+    rep(i,1,n)
+        s.change(1,1,n,i,a[i]);
+    rep(i,1,n){
+        int l=i-k,r=((i-1)/k)*k;
+        if(l>r)continue;
+        dp[i]=max(fm.ask(1,0,n,max(l,0),max(r,0))
+            ,f.ask(1,0,n,max(l,0),max(r,0))+s.ask(1,1,n,r+1,i));
+        f.change(1,0,n,i,dp[i]);
+        fm.change(1,0,n,i,dp[i]+s.ask(1,1,n,i+1,min(r+k,n)));
+    }
+    prtl(dp[n]);
 }

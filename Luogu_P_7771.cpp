@@ -11,8 +11,6 @@ using namespace std;
 #define msl(x) memset(x,0xcf,sizeof(x))
 #define gc() getchar()
 #define pc(x) putchar(x)
-#define psb(x) push_back(x)
-#define ppb() pop_back()
 #define ll long long
 #define ull unsigned long long
 #define lf double
@@ -42,7 +40,49 @@ void prts(ll x){prt(x);pc(' ');}
 void prts(ll x,string s){prt(x);for(auto c:s)pc(c);}
 void prtl(ll x){prt(x);pc('\n');}
 /*------------------------*/
-vector<int> ts;
+int n,m;
+vector<int> g[300200];
+int now[300100];
+int st[300100],h;
+int v[300100],in[300100];
+void dfs(int x){
+    for(int i=now[x];i<=(int)g[x].size()-1;i=now[x]){
+        now[x]=i+1;
+        dfs(g[x][i]);
+    }
+    st[++h]=x;
+}
 int main(){
-    ts.pb();
+    n=read();m=read();
+    rep(i,1,m){
+        int x=read(),y=read();
+        g[x].push_back(y);
+        in[x]++;in[y]--;
+    }
+    rep(i,1,n)
+        sort(g[i].begin(),g[i].end());
+    int a=0,b=0,id=1;
+    rep(i,1,n)
+        if(in[i]==1)
+            id=i,a++;
+        else if(in[i]==-1)
+            b++;
+        else if(in[i]!=0){
+            pf("No\n");
+            return 0;
+        }
+    if(a==b&&a==0){
+        dfs(1);
+        per(i,1,h)
+            prts(st[i]);
+        return 0;
+    }
+    if(a==b&&a==1){
+        dfs(id);
+        per(i,1,h)
+            prts(st[i]);
+        return 0;
+    }
+    pf("No\n");
+    return 0;
 }

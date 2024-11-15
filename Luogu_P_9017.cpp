@@ -42,7 +42,46 @@ void prts(ll x){prt(x);pc(' ');}
 void prts(ll x,string s){prt(x);for(auto c:s)pc(c);}
 void prtl(ll x){prt(x);pc('\n');}
 /*------------------------*/
-vector<int> ts;
+int n,q;
+bool dp[61][1<<20];
+inline int rd(int x){
+    return (x>>1)|((x&1)<<(n-1));
+}
 int main(){
-    ts.pb();
+    q=read();n=read();
+    dp[0][0]=1;
+    int tmp=0;
+    rep(i,1,3*n){
+        tmp^=(1<<((i-1)%n));
+        rep(j,0,(1<<n)-1){
+            int x=tmp;
+            rep(k,0,n-1)
+                dp[i][j]|=dp[i-1][j^x],x=rd(x);
+        }
+    }
+    while(q--){
+        int a=0,b=0;
+        rep(i,1,n){
+            char c=gc();
+            while(!isdigit(c))c=gc();
+            a=(a<<1)|(c=='1');
+        }
+        rep(i,1,n){
+            char c=gc();
+            while(!isdigit(c))c=gc();
+            b=(b<<1)|(c=='1');
+        }
+        if(a==0){
+            prtl(0);
+            continue;
+        }
+        rep(i,1,60){
+            a^=b;
+            if(dp[i][a]){
+                prtl(i);
+                break;
+            }
+            b=rd(b);
+        }
+    }
 }

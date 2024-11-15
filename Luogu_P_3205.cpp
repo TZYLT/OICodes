@@ -42,7 +42,19 @@ void prts(ll x){prt(x);pc(' ');}
 void prts(ll x,string s){prt(x);for(auto c:s)pc(c);}
 void prtl(ll x){prt(x);pc('\n');}
 /*------------------------*/
-vector<int> ts;
+#define p 19650827
+int dp[1010][1010][2];
+int a[1010],n;
 int main(){
-    ts.pb();
+    n=read();
+    rep(i,1,n)
+        a[i]=read();
+    rep(i,1,n)
+        dp[i][i][0]=1;
+    rep(len,2,n)
+        for(int l=1,r=len;r<=n;l++,r++){
+            dp[l][r][0]=((a[l]<a[l+1])*dp[l+1][r][0]+(a[l]<a[r])*dp[l+1][r][1])%p;
+            dp[l][r][1]=((a[r]>a[l])*dp[l][r-1][0]+(a[r]>a[r-1])*dp[l][r-1][1])%p;
+        }
+    prtl((dp[1][n][1]+dp[1][n][0])%p);
 }

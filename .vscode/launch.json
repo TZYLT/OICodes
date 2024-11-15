@@ -25,8 +25,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "l:/WorkSpace",
-      "program": "l:/WorkSpace/build/Debug/outDebug",
+      "cwd": "e:/WorkSpace",
+      "program": "e:/WorkSpace/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

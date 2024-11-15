@@ -1,0 +1,1 @@
+{"batch":{"id":"exlg","size":1},"name":"Luogu_UVA1723","group":"Luogu","url":"https://www.luogu.com.cn/problem/UVA1723","interactive":"false","memoryLimit":0,"timeLimit":3000,"tests":[],"input":{"type":"stdin"},"output":{"type":"stdout"},"language":{"java":{"mainClass":"Main","taskClass":"UVA1723"}},"testType":"single","srcPath":"e:\\WorkSpace\\Luogu_UVA_1723.cpp"}

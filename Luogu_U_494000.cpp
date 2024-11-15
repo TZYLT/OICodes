@@ -11,8 +11,6 @@ using namespace std;
 #define msl(x) memset(x,0xcf,sizeof(x))
 #define gc() getchar()
 #define pc(x) putchar(x)
-#define psb(x) push_back(x)
-#define ppb() pop_back()
 #define ll long long
 #define ull unsigned long long
 #define lf double
@@ -42,7 +40,18 @@ void prts(ll x){prt(x);pc(' ');}
 void prts(ll x,string s){prt(x);for(auto c:s)pc(c);}
 void prtl(ll x){prt(x);pc('\n');}
 /*------------------------*/
-vector<int> ts;
+ll t,x,y;
 int main(){
-    ts.pb();
+    t=read();
+    rep(i,1,t){
+        x=read();y=read();
+        if(x==y){
+            prtl(0);
+            continue;
+        }
+        __int128 t=(__int128)x*y/__gcd(x,y);
+        if(t<x+y)prtl(t);
+        else prtl(x+y);
+        
+    }
 }

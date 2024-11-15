@@ -11,8 +11,6 @@ using namespace std;
 #define msl(x) memset(x,0xcf,sizeof(x))
 #define gc() getchar()
 #define pc(x) putchar(x)
-#define psb(x) push_back(x)
-#define ppb() pop_back()
 #define ll long long
 #define ull unsigned long long
 #define lf double
@@ -42,7 +40,31 @@ void prts(ll x){prt(x);pc(' ');}
 void prts(ll x,string s){prt(x);for(auto c:s)pc(c);}
 void prtl(ll x){prt(x);pc('\n');}
 /*------------------------*/
-vector<int> ts;
+int f[2020],maxx,a[22],n,m;
+int dp(int s){
+    maxx=0;
+    rep(i,0,n-1)
+        if((s>>i)&1)
+            maxx+=a[i];
+    msz(f);
+    f[0]=1;
+    rep(i,0,n-1)
+        if((s>>i)&1)
+            per(j,a[i],maxx)
+                f[j]|=f[j-a[i]];
+    int ans=0;
+    rep(i,1,maxx)
+        ans+=f[i];
+    return ans;
+}
+int ans=0;
 int main(){
-    ts.pb();
+    n=read();m=read();
+    m=n-m;
+    rep(i,0,n-1)
+        a[i]=read();
+    rep(i,0,(1<<n)-1)
+        if(__builtin_popcount(i)==m)
+            ckmax(ans,dp(i));
+    prtl(ans);
 }

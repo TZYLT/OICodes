@@ -42,7 +42,34 @@ void prts(ll x){prt(x);pc(' ');}
 void prts(ll x,string s){prt(x);for(auto c:s)pc(c);}
 void prtl(ll x){prt(x);pc('\n');}
 /*------------------------*/
-vector<int> ts;
+int t,n;
 int main(){
-    ts.pb();
+    t=read();
+    while(t--){
+        n=read();
+        if(n&1){
+            if(n>=27){
+                prts(n+5);
+                rep(i,2,9)
+                    prts(i/2);
+                prts(n+5);
+                rep(i,11,22)
+                    prts((i-1)/2);
+                prts(n+6);
+                rep(i,24,25)
+                    prts(i/2);
+                prts(n+5);
+                prts(n+6);
+                rep(i,28,n)
+                    prts(i/2);
+            }else{
+                prts(-1);
+            }
+            pc('\n');
+        }else{
+            rep(i,2,n+1)
+                prts(i/2);
+            pc('\n');
+        }
+    }
 }
