@@ -42,3 +42,30 @@ void prts(ll x){prt(x);pc(' ');}
 void prts(ll x,string s){prt(x);for(auto c:s)pc(c);}
 void prtl(ll x){prt(x);pc('\n');}
 /*------------------------*/
+string s;
+vector<int> a;
+int sum;
+int n,k;
+int main(){
+    n=read();k=read();
+    cin>>s;s=" "+s+" ";
+    rep(i,1,n)
+        if(s[i]!=s[i+1]){
+            sum++;
+            a.push_back(sum);
+            sum=0;
+        }else sum++;
+    if(s[1]=='1'){
+        a[2*k-4]+=a[2*k-2];
+        a[2*k-2]=0;
+    }else{
+        a[2*k-3]+=a[2*k-1];
+        a[2*k-1]=0;
+    }
+    int st=s[1]-'0';
+    for(int i=0;i<a.size();i++){
+        rep(j,1,a[i])
+            prt(st);
+        st^=1;
+    }
+}

@@ -42,3 +42,53 @@ void prts(ll x){prt(x);pc(' ');}
 void prts(ll x,string s){prt(x);for(auto c:s)pc(c);}
 void prtl(ll x){prt(x);pc('\n');}
 /*------------------------*/
+#define M 500500
+int fa[M],sz[M],maxx[M],minn[M];
+int n,q;
+int cl[M],sum[M];
+void init(void){
+    for(int i=0;i<=n;i++)
+            fa[i]=i,sz[i]=1,maxx[i]=minn[i]=i;
+}
+int get(int x){
+    if(x==fa[x]) return x;
+    return fa[x]=get(fa[x]);
+} 
+void merge(int x,int y){
+    x=get(x);y=get(y);
+    if(x==y)return;
+    ckmax(maxx[y],maxx[x]);
+    ckmin(minn[y],minn[x]);
+    sz[y]+=sz[x];
+    fa[x]=y;
+}
+
+int main(){
+    n=read();q=read();
+    rep(i,1,n)
+        cl[i]=i,sum[i]=1;
+    init();
+    while(q--){
+        int op=read();
+        if(op==1){
+            int x=read(),c=read();
+            int fx=get(x);
+            sum[cl[fx]]-=sz[fx];
+            sum[c]+=sz[fx];
+            cl[fx]=c;
+            if(minn[fx]>1){
+                int rt=get(minn[fx]-1);
+                if(cl[rt]==c)
+                    merge(fx,rt);
+            }
+            if(maxx[fx]<n){
+                int rt=get(maxx[fx]+1);
+                if(cl[rt]==c)
+                    merge(fx,rt);
+            }    
+        }else{
+            int c=read();
+            prtl(sum[c]);
+        }
+    }
+}

@@ -42,3 +42,32 @@ void prts(ll x){prt(x);pc(' ');}
 void prts(ll x,string s){prt(x);for(auto c:s)pc(c);}
 void prtl(ll x){prt(x);pc('\n');}
 /*------------------------*/
+#define p 998244353
+int n,k;
+int inv[1001000],ifac[10010000];
+long long qpow(long long a,long long k){
+    long long res=1;
+    while(k){
+        if(k&1) res=(res*a)%p;
+        a=(a*a)%p;
+        k>>=1;
+    }
+    return res%p;
+}
+int st(int n,int m){
+    int ans=0;
+    rep(i,0,m)
+        if((m-i)&1)(ans+=p-1ll*qpow(i,n)*ifac[i]%p*ifac[m-i]%p)%=p;
+        else (ans+=1ll*qpow(i,n)*ifac[i]%p*ifac[m-i]%p)%=p;
+    return ans;
+}
+int main(){
+    n=read();k=read();
+    inv[1]=1;
+    for(int i=2;i<=n;++i)
+        inv[i]=(long long)(p-p/i)*inv[p%i]%p;
+    ifac[0]=1;
+    rep(i,1,n)
+        ifac[i]=1ll*ifac[i-1]*inv[i]%p;
+    prtl(st(n,n-k));
+}

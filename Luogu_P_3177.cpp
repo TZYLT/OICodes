@@ -42,3 +42,43 @@ void prts(ll x){prt(x);pc(' ');}
 void prts(ll x,string s){prt(x);for(auto c:s)pc(c);}
 void prtl(ll x){prt(x);pc('\n');}
 /*------------------------*/
+#define M 2020
+#define N 4040
+int head[N],nextt[N],edge[N],ver[N],cnt;
+void add(int x,int y,int z){
+    ++cnt;
+    ver[cnt]=y;
+    edge[cnt]=z;
+    nextt[cnt]=head[x];
+    head[x]=cnt;
+}
+ll dp[M][M],sz[M],n,m;
+void dfs(int x,int fa){
+    sz[x]=1;
+    dp[x][0]=dp[x][1]=0;
+    for(int i=head[x];i;i=nextt[i])
+        if(ver[i]!=fa){
+            dfs(ver[i],x);
+            sz[x]+=sz[ver[i]];
+            per(j,0,min(m,sz[x])){
+                if(dp[x][j]>=0)
+                    dp[x][j]+=dp[ver[i]][0]+sz[ver[i]]*(n-m-sz[ver[i]])*edge[i];
+                per(k,1,min((ll)j,sz[ver[i]]))
+                    if(dp[x][j-k]>=0){
+                        ll v=(k*(m-k)+(sz[ver[i]]-k)*(n-m-sz[ver[i]]+k))*edge[i];
+                        ckmax(dp[x][j],dp[x][j-k]+dp[ver[i]][k]+v);
+                    }
+            }
+        }
+}
+int main(){
+    n=read();m=read();
+    rep(i,1,n-1){
+        int x=read(),y=read(),w=read();
+        add(x,y,w);
+        add(y,x,w);
+    }
+    msl(dp);
+    dfs(1,0);
+    prtl(dp[1][m]);
+}

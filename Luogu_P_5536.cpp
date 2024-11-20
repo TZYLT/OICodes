@@ -42,3 +42,38 @@ void prts(ll x){prt(x);pc(' ');}
 void prts(ll x,string s){prt(x);for(auto c:s)pc(c);}
 void prtl(ll x){prt(x);pc('\n');}
 /*------------------------*/
+#define M 200200
+int head[M],nextt[M],ver[M],cnt;
+void add(int x,int y){
+    ++cnt;
+    ver[cnt]=y;
+    nextt[cnt]=head[x];
+    head[x]=cnt;
+}
+int deg[M],dis[M],v[M];
+int n,k;
+queue<int> q;
+int main(){
+    n=read();k=read();
+    rep(i,1,n-1){
+        int x=read(),y=read();
+        add(x,y);add(y,x);deg[x]++;deg[y]++;
+    }
+    rep(i,1,n)
+        if(deg[i]==1)
+            q.push(i),dis[i]=-1;
+    while(q.size()){
+        int x=q.front();q.pop();
+        for(int i=head[x];i;i=nextt[i])
+            if(!v[ver[i]]){
+                deg[ver[i]]--;
+                if(deg[ver[i]]==1){
+                    dis[ver[i]]=dis[x]-1;
+                    q.push(ver[i]);v[ver[i]]=1;
+                }
+            }
+    }
+    sort(dis+1,dis+1+n);
+    prtl(-dis[k+1]);
+}
+

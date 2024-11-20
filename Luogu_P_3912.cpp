@@ -42,3 +42,19 @@ void prts(ll x){prt(x);pc(' ');}
 void prts(ll x,string s){prt(x);for(auto c:s)pc(c);}
 void prtl(ll x){prt(x);pc('\n');}
 /*------------------------*/
+bitset<100100000> v;
+int p[10000000],k;
+void linearSieve(int n){
+    v[1]=1;
+    for(int i=2;i<=n;i++){
+        if(!v[i])p[++k]=i;
+        for(int j=1;j<=k&&i*p[j]<=n;j++){
+            v[i*p[j]]=1;
+            if(i%p[j]==0)break;
+        }
+    }
+}
+int main(){
+    linearSieve(read());
+    prtl(k);
+}

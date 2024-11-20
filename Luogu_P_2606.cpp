@@ -42,3 +42,33 @@ void prts(ll x){prt(x);pc(' ');}
 void prts(ll x,string s){prt(x);for(auto c:s)pc(c);}
 void prtl(ll x){prt(x);pc('\n');}
 /*------------------------*/
+int inv[1001000],n,p;
+int fac[1000100],ifac[1000100];
+int f[1000100];
+
+int C(int x,int y){
+    if(x-y<0||x<0||y<0)return 0;
+    return 1ll*fac[x]%p*ifac[y]%p*ifac[x-y]%p;
+}
+int lucas(int x,int y){
+    if(x<p&&y<p)return C(x,y);
+    return 1ll*lucas(x%p,y%p)*lucas(x/p,y/p)%p;
+}
+int main(){
+    n=read();p=read();
+    inv[1]=1;
+    for(int i=2;i<=n;++i)
+        inv[i]=(long long)(p-p/i)*inv[p%i]%p;
+    fac[0]=ifac[0]=1;
+    rep(i,1,n)
+        fac[i]=1ll*fac[i-1]*i%p,
+        ifac[i]=1ll*ifac[i-1]*inv[i]%p;
+    f[0]=f[1]=f[2]=1;f[3]=2;
+    int l=1,r=1;
+    rep(i,4,n){
+        if(i-(1<<__lg(i))+1<=(1<<__lg(i)-1))l++;
+        else r++;
+        f[i]=1ll*lucas(i-1,l)*f[l]%p*f[r]%p;
+    }
+    prtl(f[n]);
+}

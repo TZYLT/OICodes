@@ -42,3 +42,7 @@ void prts(ll x){prt(x);pc(' ');}
 void prts(ll x,string s){prt(x);for(auto c:s)pc(c);}
 void prtl(ll x){prt(x);pc('\n');}
 /*------------------------*/
+int main(){
+    int n=read(),k=read();
+    prtl(n/k);
+}

@@ -42,3 +42,50 @@ void prts(ll x){prt(x);pc(' ');}
 void prts(ll x,string s){prt(x);for(auto c:s)pc(c);}
 void prtl(ll x){prt(x);pc('\n');}
 /*------------------------*/
+int fac[10001000],t,n,r;
+int v[10001000],p[10001000],k;
+int sum[10001000],isv[10001000],inv[10001000];
+void linearSieve(int n){
+    v[1]=1;
+    for(int i=2;i<=n;i++){
+        if(!v[i])p[++k]=i;
+        for(int j=1;j<=k&&i*p[j]<=n;j++){
+            v[i*p[j]]=1;
+            if(i%p[j]==0)break;
+        }
+    }
+}
+int main(){
+    t=read();r=read();
+    fac[0]=1;
+    linearSieve(10000000);
+    rep(i,1,10000000)
+        if(i==r)fac[i]=fac[i-1];
+        else fac[i]=1ll*fac[i-1]*i%r;
+    inv[1]=1;
+    for(int i=2;i<=10000000;++i)
+        inv[i]=(long long)(r-r/i)*inv[r%i]%r;
+    sum[0]=1;isv[0]=1;
+    rep(i,1,10000000)
+        if(!v[i]&&i!=r){
+            sum[i]=1ll*sum[i-1]*(i-1)%r;
+            isv[i]=1ll*isv[i-1]*inv[i]%r;
+        }
+        else if(!v[i]&&i==r){
+            sum[i]=1ll*sum[i-1]*(i-1)%r;
+            isv[i]=isv[i-1];
+        }else{
+            sum[i]=sum[i-1];
+            isv[i]=isv[i-1];
+        }
+
+    while(t--){
+        int n=read(),m=read();
+        if(m>=r||n<r){
+            prtl(1ll*fac[n]*sum[m]%r*isv[m]%r);
+        }else if(n>=r){
+            prtl(0);
+        }
+
+    }
+}

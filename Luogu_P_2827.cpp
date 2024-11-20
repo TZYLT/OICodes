@@ -42,3 +42,47 @@ void prts(ll x){prt(x);pc(' ');}
 void prts(ll x,string s){prt(x);for(auto c:s)pc(c);}
 void prtl(ll x){prt(x);pc('\n');}
 /*------------------------*/
+#define int ll
+ll A[100100];
+queue<ll> a,b,c;
+int n,m,q,u,v,t;
+ll dt;
+vector<int> ans;
+signed main(){
+    n=read();m=read();q=read();u=read();v=read();t=read();
+    rep(i,1,n)
+        A[i]=read();
+    sort(A+1,A+1+n);
+    per(i,1,n)
+        a.push(A[i]);
+    rep(i,1,m){
+        pii pt=max({(pii){(a.size()?a.front():-inf),1}
+                    ,(pii){(b.size()?b.front():-inf),2}
+                    ,(pii){(c.size()?c.front():-inf),3}});
+        if(pt.se==1)a.pop();
+        if(pt.se==2)b.pop();
+        if(pt.se==3)c.pop();
+        ll now=pt.fi+dt;
+        ans.push_back(now);
+        ll l=now*u/v,r=now-l;
+        b.push(l-dt-q);
+        c.push(r-dt-q);
+        dt+=q;
+    }
+    for(int i=t;i<=m;i+=t)
+        prts(ans[i-1]);
+    ans.clear();
+    rep(i,1,n+m){
+        pii pt=max({(pii){(a.size()?a.front():-inf),1}
+                    ,(pii){(b.size()?b.front():-inf),2}
+                    ,(pii){(c.size()?c.front():-inf),3}});
+        if(pt.se==1)a.pop();
+        if(pt.se==2)b.pop();
+        if(pt.se==3)c.pop();
+        ll now=pt.fi+dt;
+        ans.push_back(now);
+    }
+    pc('\n');
+    for(int i=t;i<=m+n;i+=t)
+        prts(ans[i-1]);
+}

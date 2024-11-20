@@ -42,3 +42,17 @@ void prts(ll x){prt(x);pc(' ');}
 void prts(ll x,string s){prt(x);for(auto c:s)pc(c);}
 void prtl(ll x){prt(x);pc('\n');}
 /*------------------------*/
+int n,m,k,x;
+long long qpow(long long a,long long k,long long p){
+    long long res=1;
+    while(k){
+        if(k&1) res=(res*a)%p;
+        a=(a*a)%p;
+        k>>=1;
+    }
+    return res%p;
+}
+int main(){
+    n=read();m=read();k=read();x=read();
+    prtl((1ll*m*qpow(10,k,n)%n+x)%n);
+}

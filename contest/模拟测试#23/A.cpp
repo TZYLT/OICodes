@@ -42,3 +42,46 @@ void prts(ll x){prt(x);pc(' ');}
 void prts(ll x,string s){prt(x);for(auto c:s)pc(c);}
 void prtl(ll x){prt(x);pc('\n');}
 /*------------------------*/
+#define mod 998244353
+#define int ll
+void exgcd(int a, int b, int &x, int &y) {
+    if(b == 0) {x = 1;y = 0;return;}
+    exgcd(b, a % b,x,y);
+    int Last_x = x;
+    x = y;
+    y = Last_x - a / b * y;
+}
+int n,m,c,t;
+int a[300300],b[300300];
+signed main(){
+    n=read();m=read();c=read();
+    rep(i,1,n)
+        a[i]=read()%mod;
+    rep(i,1,m)
+        b[i]=read()%mod;
+    t=read();
+    while(t--){
+        int p=read(),q=read();
+        int x,y,g=__gcd(p,q);
+        if(c%g!=0){prtl(0);continue;}
+        exgcd(p,q,x,y);
+        x*=c/g;y*=c/g;
+        p/=g;q/=g;
+        y+=p*(x/q);x%=q;
+        if(y>m){
+            x+=q*ceil((lf)(y-m)/p);
+            y-=p*ceil((lf)(y-m)/p);
+        }
+        if(x==0){
+            x+=q;y-=p;
+        }
+        if(y==0){
+            x-=q;y+=p;
+        }
+        if(x<0||y<0||x>n||y>m){prtl(0);continue;}
+        int ans=0;
+        for(;x<=n&&y>=1;x+=q,y-=p)
+            (ans+=1ll*a[x]*b[y]%mod)%=mod;
+        prtl(ans);
+    }
+}

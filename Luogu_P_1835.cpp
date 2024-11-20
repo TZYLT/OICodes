@@ -42,3 +42,53 @@ void prts(ll x){prt(x);pc(' ');}
 void prts(ll x,string s){prt(x);for(auto c:s)pc(c);}
 void prtl(ll x){prt(x);pc('\n');}
 /*------------------------*/
+
+int v[100100],p[100100],k;
+int pri[7]={2,325,9375,28178,450775,9780504,1795265022};
+void linearSieve(int n){
+    v[1]=1;
+    for(int i=2;i<=n;i++){
+        if(!v[i])p[++k]=i;
+        for(int j=1;j<=k&&i*p[j]<=n;j++){
+            v[i*p[j]]=1;
+            if(i%p[j]==0)break;
+        }
+    }
+}
+long long qpow(long long a,long long k,long long p){
+    long long res=1;
+    while(k){
+        if(k&1) res=(res*a)%p;
+        a=(a*a)%p;
+        k>>=1;
+    }
+    return res%p;
+}
+bool MRtest(long long a,long long n){
+    long long t=n-1,u=0;
+    while(!(t&1))t>>=1,u++;
+    long long b=qpow(a,t,n);
+    while(u--){
+        long long tmp=1ll*b*b%n;
+        if(b!=1&&b!=(n-1)&&tmp==1)
+            return 0;
+        b=tmp;
+    }
+    if(b!=1)return 0;
+    return 1;
+}
+bool MR(long long n){
+    if(n<=100000)return !v[n];
+    if(!(n&1))return 0;
+    for(int i=0;i<=6;i++)
+        if(!MRtest(pri[i],n))return 0;
+    return 1;
+}
+int main(){
+    linearSieve(100000);
+    int ans=0;
+    int l=read(),r=read();
+    rep(i,l,r)
+        ans+=MR(i);
+    prtl(ans);
+}

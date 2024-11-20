@@ -31,7 +31,7 @@ ll read(){
     while(!isdigit(c)){if(c=='-')f=-1;c=getchar();}
     while(isdigit(c)){x=x*10+(c^48);c=getchar();}
     return x*f;
-}
+}w
 void prt(ll x){
     if(x<0) return pc('-'),prt(-x);
     if(x>9)prt(x/10);
@@ -42,3 +42,30 @@ void prts(ll x){prt(x);pc(' ');}
 void prts(ll x,string s){prt(x);for(auto c:s)pc(c);}
 void prtl(ll x){prt(x);pc('\n');}
 /*------------------------*/
+#define p 1000000007
+string s;
+int n,k;
+ll dp[505][505][6];
+bool ck(int i,int j){return (s[i]=='('||s[i]=='?')&&(s[j]==')'||s[j]=='?');}
+int main(){
+    n=read();k=read();
+    cin>>s;
+    s=" "+s;
+    rep(i,1,n)  
+        dp[i][i-1][0]=1;
+    rep(len,1,n)
+        for(int l=1,r=len;r<=n;l++,r++){
+            if(len<=k)dp[l][r][0]=dp[l][r-1][0]&&(s[r]=='*'||s[r]=='?');
+            if(len>=2){
+                if(ck(l,r))dp[l][r][1]=(dp[l+1][r-1][0]+dp[l+1][r-1][2]+dp[l+1][r-1][3]+dp[l+1][r-1][4])%p;
+                rep(i,l,r-1){
+                    dp[l][r][2]=(dp[l][r][2]+dp[l][i][3]*dp[i+1][r][0])%p;
+                    dp[l][r][3]=(dp[l][r][3]+(dp[l][i][2]+dp[l][i][3])*dp[i+1][r][1])%p;
+                    dp[l][r][4]=(dp[l][r][4]+(dp[l][i][4]+dp[l][i][5])*dp[i+1][r][1])%p;
+                    dp[l][r][5]=(dp[l][r][5]+dp[l][i][4]*dp[i+1][r][0])%p;
+                }
+            }dp[l][r][5]=(dp[l][r][5]+dp[l][r][0])%p;
+            dp[l][r][3]=(dp[l][r][3]+dp[l][r][1])%p;
+        }
+    prtl(dp[1][n][3]);
+}

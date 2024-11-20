@@ -42,3 +42,27 @@ void prts(ll x){prt(x);pc(' ');}
 void prts(ll x,string s){prt(x);for(auto c:s)pc(c);}
 void prtl(ll x){prt(x);pc('\n');}
 /*------------------------*/
+int st[1000];
+int main(){
+    char c=gc();
+    while(!isdigit(c))c=gc();
+    st[c-'0']++;
+    c=gc();
+    while(!isdigit(c))c=gc();
+    st[c-'0']++;
+    c=gc();
+    while(!isdigit(c))c=gc();
+    st[c-'0']++;
+    c=gc();
+    while(!isdigit(c))c=gc();
+    st[c-'0']++;
+    c=gc();
+    while(!isdigit(c))c=gc();
+    st[c-'0']++;
+    c=gc();
+    while(!isdigit(c))c=gc();
+    st[c-'0']++;
+    if(st[1]==1&&st[2]==2&&st[3]==3){
+        pf("Yes");
+    }else pf("No");
+}

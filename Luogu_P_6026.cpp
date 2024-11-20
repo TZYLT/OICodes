@@ -42,3 +42,24 @@ void prts(ll x){prt(x);pc(' ');}
 void prts(ll x,string s){prt(x);for(auto c:s)pc(c);}
 void prtl(ll x){prt(x);pc('\n');}
 /*------------------------*/
+#define p 1000000007
+int fac(int n){
+    int ans=1;
+    rep(i,1,n)
+        ans=1ll*ans*i%p;
+    return ans;
+}
+long long qpow(long long a,long long k){
+    long long res=1;
+    while(k){
+        if(k&1) res=(res*a)%p;
+        a=(a*a)%p;
+        k>>=1;
+    }
+    return res%p;
+}
+int n,k;
+int main(){
+    n=read();k=read();
+    prtl(1ll*fac(n)*qpow(fac(k),p-2)%p*qpow(fac(n-k),p-2)%p*qpow(qpow(n,k),p-2)%p);
+}

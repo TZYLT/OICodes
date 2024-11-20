@@ -42,3 +42,39 @@ void prts(ll x){prt(x);pc(' ');}
 void prts(ll x,string s){prt(x);for(auto c:s)pc(c);}
 void prtl(ll x){prt(x);pc('\n');}
 /*------------------------*/
+#define M 2002000
+int head[M],nextt[M],ver[M],cnt;
+void add(int x,int y){
+    ++cnt;
+    ver[cnt]=y;
+    nextt[cnt]=head[x];
+    head[x]=cnt;
+}
+int n,m,r,qs;
+int d[M],v[M];
+queue<int> q;
+int main(){
+    n=read();m=read();r=read();
+    rep(i,1,m){
+        int x=read(),y=read();
+        add(x,y);
+        add(y,x);
+    }
+    q.push(r);qs=read();v[r]=1;
+    while(q.size()){
+        int x=q.front();q.pop();
+        for(int i=head[x];i;i=nextt[i])
+            if(!v[ver[i]]){
+                d[ver[i]]=d[x]+1;
+                v[ver[i]]=1;
+                q.push(ver[i]);
+            }
+    }
+    pf("I'm here!\n");
+    while(qs--){
+        int x=read(),y=read();  
+        pf(d[x]<=d[y]?"Terry\n":"Jom\n");
+    }
+
+
+}

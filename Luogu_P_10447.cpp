@@ -42,3 +42,20 @@ void prts(ll x){prt(x);pc(' ');}
 void prts(ll x,string s){prt(x);for(auto c:s)pc(c);}
 void prtl(ll x){prt(x);pc('\n');}
 /*------------------------*/
+int dp[21][1<<20];
+int n;
+int d[21][21];
+int main(){
+    n=read();
+    rep(i,0,n-1)
+        rep(j,0,n-1)
+            d[i][j]=read();
+    msu(dp);dp[0][1]=0;
+    rep(i,1,(1<<n)-1)
+        rep(j,0,n-1)
+            if((i>>j)&1)
+                rep(k,0,n-1)
+                    if(!((i>>k)&1))
+                        ckmin(dp[k][i|(1<<k)],dp[j][i]+d[j][k]);
+    prtl(dp[n-1][(1<<n)-1]);
+}

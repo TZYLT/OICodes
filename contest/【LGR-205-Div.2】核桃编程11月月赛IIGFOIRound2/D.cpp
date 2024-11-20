@@ -42,3 +42,21 @@ void prts(ll x){prt(x);pc(' ');}
 void prts(ll x,string s){prt(x);for(auto c:s)pc(c);}
 void prtl(ll x){prt(x);pc('\n');}
 /*------------------------*/
+int t,n,a[1001000];
+int ans[1001000];
+int main(){
+    t=read();
+    while(t--){
+        n=read();
+        rep(i,1,n)
+            a[i]=read(),ans[i]=0;
+        rep(i,1,n)
+            ans[i]=(i&1);
+        for(int i=2;i<=n;i+=2)
+            if(a[i]+1!=a[i+1])
+                ans[i]=1;
+        rep(i,1,n)
+            prt(ans[i]);
+        pc('\n');
+    }
+}

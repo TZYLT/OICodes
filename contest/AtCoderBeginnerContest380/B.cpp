@@ -42,3 +42,13 @@ void prts(ll x){prt(x);pc(' ');}
 void prts(ll x,string s){prt(x);for(auto c:s)pc(c);}
 void prtl(ll x){prt(x);pc('\n');}
 /*------------------------*/
+string s;
+int sum;
+int main(){
+    cin>>s;
+    rep(i,1,s.size()-1)
+        if(s[i]=='|'){
+            prts(sum);
+            sum=0;
+        }else sum++;
+}

@@ -42,3 +42,14 @@ void prts(ll x){prt(x);pc(' ');}
 void prts(ll x,string s){prt(x);for(auto c:s)pc(c);}
 void prtl(ll x){prt(x);pc('\n');}
 /*------------------------*/
+#define M 200200
+int head[M],nextt[M],tag[M],edge[M],ver[M],cnt;
+void add(int x,int y,int op,int z){
+    ++cnt;
+    ver[cnt]=y;
+    edge[cnt]=z;
+    tag[cnt]=op;
+    nextt[cnt]=head[x];
+    head[x]=cnt;
+}
+int dp[]

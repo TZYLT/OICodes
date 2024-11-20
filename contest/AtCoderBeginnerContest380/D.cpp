@@ -42,3 +42,16 @@ void prts(ll x){prt(x);pc(' ');}
 void prts(ll x,string s){prt(x);for(auto c:s)pc(c);}
 void prtl(ll x){prt(x);pc('\n');}
 /*------------------------*/
+string s;
+ll q,n,m;
+int main(){
+    cin>>s;
+    q=read();
+    m=s.size();
+    while(q--){
+        n=read();
+        int tag=(__builtin_popcountll((n-1)/m)&1);
+        if(tag) pf("%c ",s[(n-1)%m]+(s[(n-1)%mw]>=97)?(-32):32);
+        else pf("%c ",s[(n-1)%m]);
+    }
+}

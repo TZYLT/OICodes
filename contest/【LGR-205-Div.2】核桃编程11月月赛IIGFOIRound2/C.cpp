@@ -42,3 +42,33 @@ void prts(ll x){prt(x);pc(' ');}
 void prts(ll x,string s){prt(x);for(auto c:s)pc(c);}
 void prtl(ll x){prt(x);pc('\n');}
 /*------------------------*/
+#define p 998244353
+int n;
+int a[1001000];
+int b[1001000];
+int f[1001000];
+int main(){
+    n=read();
+    rep(i,1,n)
+        a[i]=read();
+    rep(i,1,n)
+        b[a[i]]=i;
+    rep(i,1,n)
+        if(a[i]!=b[i]&&a[i]!=0&&b[i]!=0){
+            prtl(0);
+            return 0;
+        }
+    rep(i,1,n){
+        if(a[i]&&!b[i])
+            b[i]=a[i];
+        if(!a[i]&&b[i])
+            a[i]=b[i];
+    }
+    int ans=1,cnt=0;
+    rep(i,1,n)cnt+=(a[i]==0);
+    f[0]=1;
+    f[1]=1;f[2]=2;
+    rep(i,3,cnt)
+        f[i]=(1ll*(i-1)*f[i-2]%p+f[i-1])%p;
+    prtl(f[cnt]);
+}

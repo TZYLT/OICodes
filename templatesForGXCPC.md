@@ -1,3 +1,10 @@
+# TemplatesForGXCPC
+
+## 杂项
+
+### 火车头
+
+```cpp
 #include<bits/stdc++.h>
 using namespace std;
 #define rep(x,l,r) for(int x=(l);x<=(r);x++)
@@ -42,3 +49,5 @@ void prts(ll x){prt(x);pc(' ');}
 void prts(ll x,string s){prt(x);for(auto c:s)pc(c);}
 void prtl(ll x){prt(x);pc('\n');}
 /*------------------------*/
+```
+

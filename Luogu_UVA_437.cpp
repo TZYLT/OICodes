@@ -42,3 +42,42 @@ void prts(ll x){prt(x);pc(' ');}
 void prts(ll x,string s){prt(x);for(auto c:s)pc(c);}
 void prtl(ll x){prt(x);pc('\n');}
 /*------------------------*/
+int n,m,d[95];
+struct Cube{
+	int x,y,z;
+	bool operator > (const Cube& T){
+		return ((x>T.x && y>T.y) || (x>T.y && y>T.x));
+	}
+}c[95];
+
+int dp(int id){
+	if(d[id]>0) return d[id];
+	d[id]=c[id].z;
+	for(int i=1;i<=m;i++) 
+        if(c[id]>c[i]) 
+            d[id]=max(d[id],dp(i)+c[id].z);
+	return d[id];
+}
+int sol(void){
+	int Ans=0;
+	msz(d);
+	for(int i=1;i<=m;i++) Ans=max(dp(i),Ans);
+    return Ans;
+}
+bool inp(void){
+	n=read();m=3*n;
+	if(n==0) return 0;
+	for(int i=1;i<=m;i+=3){
+		int p=read(),q=read(),r=read();
+		c[i]={p,q,r};
+        c[i+1]={p,r,q};
+        c[i+2]={q,r,p};
+	}
+	return 1;
+}
+int main(void){
+	int cnt=0;
+	while(inp())
+        printf("Case %d: maximum height = %d\n",++cnt,sol());
+	return 0;
+}

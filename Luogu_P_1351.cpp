@@ -42,3 +42,44 @@ void prts(ll x){prt(x);pc(' ');}
 void prts(ll x,string s){prt(x);for(auto c:s)pc(c);}
 void prtl(ll x){prt(x);pc('\n');}
 /*------------------------*/
+#define M 400400
+#define p 10007
+int head[M],nextt[M],ver[M],cnt;
+void add(int x,int y){
+    ++cnt;
+    ver[cnt]=y;
+    nextt[cnt]=head[x];
+    head[x]=cnt;
+}
+int w[M];
+int sum,ans;
+void dfs(int x,int fa){
+    int sq=0,qs=0,maxx=0,maxn=0;
+    for(int i=head[x];i;i=nextt[i])
+        if(ver[i]!=fa){
+            (sq+=w[ver[i]])%=p;
+            (qs+=w[ver[i]]*w[ver[i]]%p)%=p;
+            if(w[maxx]<w[ver[i]])maxx=ver[i];
+        }
+    for(int i=head[x];i;i=nextt[i])
+        if(ver[i]!=fa)
+            if(w[maxn]<w[ver[i]]&&ver[i]!=maxx)maxn=ver[i];
+    (sum+=(sq*sq%p+2*sq%p*w[fa]%p+p-qs)%p)%=p;
+    if(maxx)ckmax(ans,w[maxx]*w[fa]);
+    if(maxn)ckmax(ans,w[maxx]*w[maxn]);
+    for(int i=head[x];i;i=nextt[i])
+        if(ver[i]!=fa)
+            dfs(ver[i],x);
+}
+int n;
+int main(){
+    n=read();
+    rep(i,1,n-1){
+        int x=read(),y=read();
+        add(x,y);add(y,x);
+    }
+    rep(i,1,n)
+        w[i]=read();
+    dfs(1,0);
+    prts(ans);prtl(sum);
+}

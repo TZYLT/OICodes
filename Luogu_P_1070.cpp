@@ -42,3 +42,26 @@ void prts(ll x){prt(x);pc(' ');}
 void prts(ll x,string s){prt(x);for(auto c:s)pc(c);}
 void prtl(ll x){prt(x);pc('\n');}
 /*------------------------*/
+ll dp[1010],c[2010][1010],ct[1010];
+int n,m,p;
+ll cal(int i,int j,int k){
+    return c[i][j]-c[i+k][j+k];
+}
+int main(){
+    n=read();m=read();p=read();
+    msl(dp);dp[0]=0;
+    rep(i,1,n)
+        rep(j,1,m)
+            c[i][j]=c[i+n][j]=read();
+    rep(i,1,n)
+        ct[i]=read();
+    per(i,1,2*n)
+        per(j,1,m)
+            c[i][j]+=c[i+1][j+1];
+    rep(i,1,m)
+        rep(j,1,n)
+            rep(k,1,p)
+                if(i-k>=0)
+                    ckmax(dp[i],dp[i-k]-ct[j]+cal(j,i-k+1,k));
+    prtl(dp[m]);
+}

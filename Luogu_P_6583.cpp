@@ -42,3 +42,23 @@ void prts(ll x){prt(x);pc(' ');}
 void prts(ll x,string s){prt(x);for(auto c:s)pc(c);}
 void prtl(ll x){prt(x);pc('\n');}
 /*------------------------*/
+ll ans,n;
+ll s[1001000],cnt;
+int main(){
+    n=read();
+    for(ll i=1;i<=n;i*=2)
+        for(ll j=i;j<=n;j*=5)
+            s[++cnt]=j;
+    sort(s+1,s+1+cnt);
+    for(ll l=1,r;l<=n;l=r+1){
+        ll t=n/l;
+        r=t==0?n:n/t;
+        while(cnt&&s[cnt]>t)cnt--;
+        ll tmp=(r-l+1);
+        tmp-=r/2-(l-1)/2;
+        tmp-=r/5-(l-1)/5;
+        tmp+=r/10-(l-1)/10;
+        ans+=tmp*cnt*t;
+    }
+    prtl(ans);
+}

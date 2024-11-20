@@ -42,3 +42,30 @@ void prts(ll x){prt(x);pc(' ');}
 void prts(ll x,string s){prt(x);for(auto c:s)pc(c);}
 void prtl(ll x){prt(x);pc('\n');}
 /*------------------------*/
+lf dp[21][1<<20];
+int n;
+lf d[21][21];
+lf x[21],y[21];
+int main(){
+    n=read();
+    rep(i,1,n)
+        scanf("%lf%lf",&x[i],&y[i]);
+    n++;
+    rep(i,0,n-1)
+        rep(j,0,n-1)
+            d[i][j]=sqrt((x[i]-x[j])*(x[i]-x[j])+(y[i]-y[j])*(y[i]-y[j]));
+    rep(i,0,(1<<n)-1)
+        rep(j,0,n-1)
+            dp[j][i]=inf;
+    dp[0][1]=0;
+    rep(i,1,(1<<n)-1)
+        rep(j,0,n-1)
+            if((i>>j)&1)
+                rep(k,0,n-1)
+                    if(!((i>>k)&1))
+                        ckmin(dp[k][i|(1<<k)],dp[j][i]+d[j][k]);
+    lf ans=inf;
+    rep(i,0,n-1)
+        ckmin(ans,dp[i][(1<<n)-1]);
+    pf("%.2lf",ans);
+}

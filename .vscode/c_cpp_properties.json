@@ -1,35 +1,35 @@
 {
-    "configurations": [
-        {
-            "compilerPath": "C:/mingw64/bin/gcc.exe",
-            "cppStandard": "${default}",
-            "includePath": [
-                "${workspaceFolder}/**"
-            ],
-            "intelliSenseMode": "windows-gcc-x64",
-            "name": "windows-gcc-x64",
-            "cStandard": "${default}",
-            "compilerArgs": [
-                "-Wall",
-                "-Wextra",
-                "-std=c++14"
-            ]
-        },
-        {
-            "name": "Win32",
-            "includePath": [
-                "${workspaceFolder}/**"
-            ],
-            "defines": [
-                "_DEBUG",
-                "UNICODE",
-                "_UNICODE"
-            ],
-            "compilerPath": "C:\\Program Files (x86)\\Dev-Cpp\\MinGW32\\bin\\gcc.exe",
-            "intelliSenseMode": "windows-gcc-x86",
-            "cStandard": "c17",
-            "cppStandard": "c++17"
-        }
-    ],
-    "version": 4
+  "configurations": [
+    {
+      "compilerPath": "C:/mingw64/bin/gcc.exe",
+      "cppStandard": "${default}",
+      "includePath": [
+        "${workspaceFolder}/**"
+      ],
+      "intelliSenseMode": "windows-gcc-x64",
+      "name": "windows-gcc-x64",
+      "cStandard": "${default}",
+      "compilerArgs": [
+        "-Wall",
+        "-Wextra",
+        "-std=c++14"
+      ]
+    },
+    {
+      "name": "Win32",
+      "includePath": [
+        "${workspaceFolder}/**"
+      ],
+      "defines": [
+        "_DEBUG",
+        "UNICODE",
+        "_UNICODE"
+      ],
+      "compilerPath": "C:\\Program Files (x86)\\Dev-Cpp\\MinGW32\\bin\\gcc.exe",
+      "intelliSenseMode": "windows-gcc-x86",
+      "cStandard": "c17",
+      "cppStandard": "c++17"
+    }
+  ],
+  "version": 4
 }

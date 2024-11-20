@@ -42,3 +42,26 @@ void prts(ll x){prt(x);pc(' ');}
 void prts(ll x,string s){prt(x);for(auto c:s)pc(c);}
 void prtl(ll x){prt(x);pc('\n');}
 /*------------------------*/
+#define M 303
+int dp[M][M],p[M][M][M];
+int n,m;
+int main(){
+    n=read();m=read();
+    rep(i,1,m){
+        int w=read(),l=read(),r=read();
+        rep(j,l,r)
+            p[l][r][j]=w;
+    }
+    rep(len,1,n)
+        for(int l=1,r=len;r<=n;r++,l++)
+            rep(k,l,r)
+                ckmax(p[l][r][k],max(p[l+1][r][k],p[l][r-1][k]));
+    rep(len,1,n)
+        for(int l=1,r=len;r<=n;r++,l++)
+            rep(k,l,r){
+                if(k<r)ckmax(dp[l][r],dp[l][k]+dp[k+1][r]);
+                ckmax(dp[l][r],p[l][r][k]+dp[l][k-1]+dp[k+1][r]);
+            }
+    prtl(dp[1][n]);
+
+}

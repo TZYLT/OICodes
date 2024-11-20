@@ -42,3 +42,50 @@ void prts(ll x){prt(x);pc(' ');}
 void prts(ll x,string s){prt(x);for(auto c:s)pc(c);}
 void prtl(ll x){prt(x);pc('\n');}
 /*------------------------*/
+vector<int> g[5050];
+vector<int> ans,tmp;
+vector<pii> eg;
+int a,b;
+bool v[5050];
+void dfs(int x,int fa){
+    ans.push_back(x);v[x]=1;
+    for(int y:g[x])
+        if(y!=fa&&!v[y]&&(!((x==a&&y==b)||(x==b&&y==a))))
+            dfs(y,x);
+}
+int n,m;
+int main(){
+    n=read();m=read();
+    rep(i,1,m){
+        int x=read(),y=read();
+        g[x].push_back(y);
+        g[y].push_back(x);eg.push_back({x,y});
+    }
+    rep(i,1,n)
+        sort(g[i].begin(),g[i].end());
+    if(m==n){
+        rep(i,1,n)
+            tmp.push_back(inf);
+        for(pii c:eg){
+            ans.clear();msz(v);
+            a=c.fi,b=c.se;
+            dfs(1,0);
+            if(ans.size()==n){
+                int flag=0;
+                rep(i,0,n-1)
+                    if(ans[i]<tmp[i]){
+                        flag=1;
+                        break;
+                    }else if(ans[i]>tmp[i])break;
+                if(flag)swap(ans,tmp);
+            }
+        }
+        for(int c:tmp)
+            prts(c);
+    }else{
+        dfs(1,0);
+        for(int c:ans)
+            prts(c);
+    }
+    
+}

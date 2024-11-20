@@ -42,3 +42,22 @@ void prts(ll x){prt(x);pc(' ');}
 void prts(ll x,string s){prt(x);for(auto c:s)pc(c);}
 void prtl(ll x){prt(x);pc('\n');}
 /*------------------------*/
+string s;
+int st[30];
+int n;
+int main(){
+    cin>>n;
+    cin>>s;
+    rep(i,1,s.size()){
+        st[s[i-1]-'a']++;
+    }
+    rep(i,1,s.size()){
+        st[s[i-1]-'a']--;
+        int minn=inf,id;
+        rep(j,0,25)
+            if(minn>st[j])
+                minn=st[j],id=j;
+        pc('a'+id);
+        st[s[i-1]-'a']++;
+    }
+}

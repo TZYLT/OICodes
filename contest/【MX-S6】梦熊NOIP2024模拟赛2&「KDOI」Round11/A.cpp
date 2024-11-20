@@ -42,3 +42,49 @@ void prts(ll x){prt(x);pc(' ');}
 void prts(ll x,string s){prt(x);for(auto c:s)pc(c);}
 void prtl(ll x){prt(x);pc('\n');}
 /*------------------------*/
+#define int ll
+vector<int> ans[200100];
+set<pii> st,fr;
+pair<pii,int> qs[200200];
+int n,m;
+signed main(){
+    n=read();m=read();
+    rep(i,1,m)
+        fr.insert({0,i});
+    rep(i,1,n){
+        int x=read(),y=read();
+        qs[i]={{y,x},i};
+    }   
+    sort(qs+1,qs+1+n);
+    rep(i,1,n){
+        vector<pii> tp;
+        for(auto c:st){
+            if(c.fi<=qs[i].fi.fi)
+                tp.push_back(c);
+            else break;
+        }
+        for(auto c:tp){
+            st.erase(c);
+            fr.insert({0,c.se});
+        }
+
+        pii pt;
+        if(fr.size()){
+            pt=*fr.begin();
+            fr.erase(pt);
+            pt.first=qs[i].fi.fi;
+        }else{
+            pt=*st.begin();
+            st.erase(pt);
+        }
+        ans[pt.se].push_back(qs[i].se);
+        st.insert({qs[i].fi.se+pt.fi,pt.se});
+    }
+    rep(i,1,m){
+        sort(ans[i].begin(),ans[i].end());
+        prts(ans[i].size());
+        for(int c:ans[i])
+            prts(c);
+        pc('\n');
+    }
+}

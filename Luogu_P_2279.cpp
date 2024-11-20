@@ -42,3 +42,45 @@ void prts(ll x){prt(x);pc(' ');}
 void prts(ll x,string s){prt(x);for(auto c:s)pc(c);}
 void prtl(ll x){prt(x);pc('\n');}
 /*------------------------*/
+#define M 20020
+int head[M],nextt[M],ver[M],cnt;
+void add(int x,int y){
+    ++cnt;
+    ver[cnt]=y;
+    nextt[cnt]=head[x];
+    head[x]=cnt;
+}
+int dep[M],fa[M];
+void dfs(int x,int fa){
+    dep[x]=dep[fa]+1;
+    for(int i=head[x];i;i=nextt[i])
+        if(ver[i]!=fa)
+            dfs(ver[i],x);
+}
+pii dt[M];
+int n;
+int w[M];
+int main(){
+    n=read();
+    fa[1]=1;
+    rep(i,2,n){
+        int x=read();
+        fa[i]=x;
+        add(x,i);
+        add(i,x);
+    }
+    dfs(1,0);
+    rep(i,1,n)
+        dt[i]={-dep[i],i};
+    sort(dt+1,dt+1+n);
+    int ans=0;
+    rep(i,1,n){
+        int x=dt[i].se;
+        if(w[x]>=1||w[fa[x]]>=2||w[fa[fa[x]]]>=3)
+            continue;
+        ans++;
+        x=fa[fa[x]];
+        w[x]=3;ckmax(w[fa[x]],2);ckmax(w[fa[fa[x]]],1);
+    }
+    prtl(ans);
+}

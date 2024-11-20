@@ -42,3 +42,33 @@ void prts(ll x){prt(x);pc(' ');}
 void prts(ll x,string s){prt(x);for(auto c:s)pc(c);}
 void prtl(ll x){prt(x);pc('\n');}
 /*------------------------*/
+#define M 5005000
+int a[M],sum[M],invsum[M],n,nk,k,p;
+int ans;
+long long qpow(long long a,long long k,long long p){
+    long long res=1;
+    while(k){
+        if(k&1) res=(res*a)%p;
+        a=(a*a)%p;
+        k>>=1;
+    }
+    return res%p;
+}
+int main(){
+    n=read();p=read();k=read();
+    sum[0]=1;
+    rep(i,1,n){
+        a[i]=read();
+        sum[i]=1ll*sum[i-1]*a[i]%p;
+    }
+    invsum[n]=qpow(sum[n],p-2,p);
+    per(i,1,n-1)
+        invsum[i]=1ll*invsum[i+1]*a[i+1]%p;
+    ans+=1ll*k*qpow(a[1],p-2,p)%p;
+    nk=1ll*k*k%p;
+    rep(i,2,n){
+        (ans+=1ll*nk*invsum[i]%p*sum[i-1]%p)%=p;
+        nk=1ll*nk*k%p;
+    }
+    prtl(ans);
+}

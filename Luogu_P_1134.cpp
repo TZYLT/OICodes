@@ -42,3 +42,15 @@ void prts(ll x){prt(x);pc(' ');}
 void prts(ll x,string s){prt(x);for(auto c:s)pc(c);}
 void prtl(ll x){prt(x);pc('\n');}
 /*------------------------*/
+ll n,ans=1;
+int main(){
+    n=read();
+    rep(i,1,n){
+        ll t=i;
+        while(t%10==0&&t!=1)t/=10;
+        ans=ans*t;
+        while(ans%10==0&&ans!=0)ans/=10;
+        ans%=100000000;
+    }
+    prtl(ans%10);
+}

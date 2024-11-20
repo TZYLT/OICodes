@@ -42,3 +42,32 @@ void prts(ll x){prt(x);pc(' ');}
 void prts(ll x,string s){prt(x);for(auto c:s)pc(c);}
 void prtl(ll x){prt(x);pc('\n');}
 /*------------------------*/
+#define M 400400
+int head[M],nextt[M],edge[M],ver[M],cnt;
+int n,m,in[M],out[M];
+void add(int x,int y,int z){
+    ++cnt;in[y]++;out[y]++;
+    ver[cnt]=y;
+    edge[cnt]=z;
+    nextt[cnt]=head[x];
+    head[x]=cnt;
+}
+lf dp[M];
+queue<int> q;
+int main(){
+    n=read();m=read();
+    rep(i,1,m){
+        int x=read(),y=read(),z=read();
+        add(y,x,z);
+    }
+    q.push(n);
+    while(q.size()){
+        int x=q.front();q.pop();
+        for(int i=head[x];i;i=nextt[i]){
+            dp[ver[i]]+=(dp[x]+(lf)edge[i])/(lf)out[ver[i]];
+            in[ver[i]]--;
+            if(!in[ver[i]])q.push(ver[i]);
+        }
+    }
+    pf("%.2lf",dp[1]);
+}

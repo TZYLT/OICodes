@@ -42,3 +42,43 @@ void prts(ll x){prt(x);pc(' ');}
 void prts(ll x,string s){prt(x);for(auto c:s)pc(c);}
 void prtl(ll x){prt(x);pc('\n');}
 /*------------------------*/
+vector<int> ans[200100];
+priority_queue<pii> st,fr;
+pair<pii,int> qs[200200];
+int n,m;
+int main(){
+    n=read();m=read();
+    rep(i,1,m)
+        fr.push({0,-i});
+    rep(i,1,n){
+        int x=read(),y=read();
+        qs[i]={{y,x+y},i};
+    }   
+    sort(qs+1,qs+1+n);
+    rep(i,1,n){
+        if(st.size())
+        while(st.size()&&(-st.top().fi<=qs[i].fi.fi)){
+            pii c=st.top();
+            st.pop();
+            fr.push({0,c.se});
+        }
+
+        pii pt;
+        if(fr.size()){
+            pt=fr.top();
+            fr.pop();
+        }else{
+            pt=st.top();
+            st.pop();
+        }
+        ans[-pt.se].push_back(qs[i].se);
+        st.push({-qs[i].fi.se,-pt.se});
+    }
+    rep(i,1,m){
+        sort(ans[i].begin(),ans[i].end());
+        prts(ans[i].size());
+        for(int c:ans[i])
+            prts(c);
+        pc('\n');
+    }
+}

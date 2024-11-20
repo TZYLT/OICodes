@@ -42,3 +42,19 @@ void prts(ll x){prt(x);pc(' ');}
 void prts(ll x,string s){prt(x);for(auto c:s)pc(c);}
 void prtl(ll x){prt(x);pc('\n');}
 /*------------------------*/
+int n,m;
+ll dp[15][15];
+int main(){
+	n=read();m=read();
+	if(n==0||m>n){
+		prtl(0);
+		return 0;
+	}
+	dp[1][1]=1;
+	rep(i,2,n)
+        rep(j,1,min(i,m))
+	        dp[i][j]=j*(dp[i-1][j]+dp[i-1][j-1]);
+	                                 
+	prtl(dp[n][m]);
+	return 0;
+}

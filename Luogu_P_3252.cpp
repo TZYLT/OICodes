@@ -42,3 +42,44 @@ void prts(ll x){prt(x);pc(' ');}
 void prts(ll x,string s){prt(x);for(auto c:s)pc(c);}
 void prtl(ll x){prt(x);pc('\n');}
 /*------------------------*/
+#define M 200200
+int head[M],nextt[M],ver[M],cnt;
+void add(int x,int y){
+    ++cnt;
+    ver[cnt]=y;
+    nextt[cnt]=head[x];
+    head[x]=cnt;
+}
+int fa[M],sum[M];int n,s,a[M];
+void dfs(int x,int f){
+    fa[x]=f;sum[x]=sum[f]+a[x];
+    for(int i=head[x];i;i=nextt[i])
+        if(ver[i]!=f)
+            dfs(ver[i],x);
+}
+
+int main(){
+    n=read();s=read();
+    rep(i,1,n)
+        a[i]=read();
+    rep(i,1,n-1){
+        int x=read(),y=read();
+        add(x,y);add(y,x);
+    }
+    dfs(1,0);
+    int ans=0;
+    rep(i,1,n)
+        if(sum[i]>=s){
+            int now=i,sm=a[i];
+            while(now){
+                if(sm==s){
+                    ans++;
+                    break;
+                }
+                if(sm>s)break;
+                now=fa[now];
+                sm+=a[now];
+            }
+        }
+    prtl(ans);
+}
